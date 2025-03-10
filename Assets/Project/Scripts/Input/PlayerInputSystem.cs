@@ -1,5 +1,4 @@
 ﻿using Leopotam.Ecs;
-using Project.Scripts.Common;
 using Project.Scripts.Tags;
 using UnityEngine;
 

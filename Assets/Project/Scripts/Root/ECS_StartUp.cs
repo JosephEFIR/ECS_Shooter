@@ -5,7 +5,7 @@ using Voody.UniLeo;
 
 namespace Project.Scripts.Common
 {
-    public class ECS_StartUp : MonoBehaviour
+    sealed class ECS_StartUp : MonoBehaviour
     {
         private EcsWorld _world;
         private EcsSystems _systems;
@@ -31,19 +31,21 @@ namespace Project.Scripts.Common
 
         private void AddOneFrames()
         {
-            
+            // хз че это
         }
 
         private void AddInjections()
         {
-            
+            // а Zenject???
         }
 
-        private void AddSystems()
+        private void AddSystems() // А если их дохера будет?
         {
             _systems
                 .Add(new PlayerInputSystem())
                 .Add(new MovementSystem())
+                .Add(new PlayerMouseInputSystem())
+                .Add(new PlayerMouseLookSystem())
                 ;
         }
 
