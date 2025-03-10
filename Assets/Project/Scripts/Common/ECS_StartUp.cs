@@ -1,7 +1,5 @@
-﻿using System;
-using Leopotam.Ecs;
+﻿using Leopotam.Ecs;
 using Project.Scripts.Move;
-using Unity.VisualScripting;
 using UnityEngine;
 using Voody.UniLeo;
 
@@ -59,7 +57,5 @@ namespace Project.Scripts.Common
             _world.Destroy();
             _world = null;
         }
-        
-        internal struct MovableComponent{}
     }
 }
