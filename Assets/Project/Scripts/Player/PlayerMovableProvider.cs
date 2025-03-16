@@ -2,7 +2,7 @@
 
 namespace Project.Scripts.Move
 {
-    public class MovableProvider : MonoProvider<MovableComponent>
+    public class MovableProvider : MonoProvider<CharMovableComponent>
     {
          
     }

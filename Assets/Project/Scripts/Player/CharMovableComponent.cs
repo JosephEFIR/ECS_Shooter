@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Project.Scripts.Move
 {
     [Serializable]
-    public struct MovableComponent
+    public struct CharMovableComponent
     {
         public CharacterController CharController;
         public float Speed;

@@ -41,9 +41,14 @@ namespace Project.Scripts.Common
 
         private void AddSystems() // А если их дохера будет?
         {
+            PlayerSystems();
+        }
+
+        private void PlayerSystems()
+        {
             _systems
                 .Add(new PlayerInputSystem())
-                .Add(new MovementSystem())
+                .Add(new PlayerMovementSystem())
                 .Add(new PlayerMouseInputSystem())
                 .Add(new PlayerMouseLookSystem())
                 ;
