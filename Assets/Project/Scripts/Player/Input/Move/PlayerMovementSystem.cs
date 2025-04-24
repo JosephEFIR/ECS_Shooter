@@ -9,7 +9,7 @@ namespace Project.Scripts.Move
     {
         private readonly EcsWorld _world = null;
         
-        private readonly EcsFilter<PlayerTag,ModelComponent,CharMovableComponent, DirectionComponent> _movableFilter = null;
+        private readonly EcsFilter<PlayerTag,ModelComponent,PlayerMovableComponent, DirectionComponent> _movableFilter = null;
         
         public void Run()
         {
@@ -20,13 +20,24 @@ namespace Project.Scripts.Move
                 ref var directionComponent = ref _movableFilter.Get4(variable);
                 
                 ref var direction = ref directionComponent.Direction;
-                ref var tranform = ref modelComponent.ModelTransform;
+                ref var transform = ref modelComponent.ModelTransform;
 
                 ref var characterController = ref movableComponent.CharController;
                 ref var speed = ref movableComponent.Speed;
+                ref var runSpeed = ref movableComponent.RunSpeed;
                 
-                var rawDirection = (tranform.right * direction.x) + (tranform.forward * direction.y);
-
+                var rawDirection = (transform.right * direction.x) + (transform.forward * direction.y);
+                
+                ref var velocity = ref movableComponent.velocity;
+                velocity.y += movableComponent.gravity * Time.deltaTime;
+                
+                characterController.Move(velocity * Time.deltaTime);
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    characterController.Move(rawDirection * runSpeed * Time.deltaTime);
+                    return;
+                }
+                
                 characterController.Move(rawDirection * speed * Time.deltaTime);
             }
         }

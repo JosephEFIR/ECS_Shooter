@@ -31,7 +31,7 @@ namespace Project.Scripts.Common
 
         private void AddOneFrames()
         {
-            // хз че это
+            _systems.OneFrame<JumpEvent>();
         }
 
         private void AddInjections()
@@ -47,10 +47,13 @@ namespace Project.Scripts.Common
         private void PlayerSystems()
         {
             _systems
+                .Add(new PlayerJumpSendEventSystem())
+                .Add(new PlayerGroundCheckSystem())
                 .Add(new PlayerInputSystem())
                 .Add(new PlayerMovementSystem())
                 .Add(new PlayerMouseInputSystem())
                 .Add(new PlayerMouseLookSystem())
+                .Add(new PlayerJumpSystem())
                 ;
         }
 
