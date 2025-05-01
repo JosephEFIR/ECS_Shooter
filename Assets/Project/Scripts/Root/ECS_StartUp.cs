@@ -32,6 +32,7 @@ namespace Project.Scripts.Common
         private void AddOneFrames()
         {
             _systems.OneFrame<JumpEvent>();
+            _systems.OneFrame<CameraSwitchEvent>();
         }
 
         private void AddInjections()
@@ -48,12 +49,15 @@ namespace Project.Scripts.Common
         {
             _systems
                 .Add(new PlayerJumpSendEventSystem())
+                .Add(new CameraSwitcherSendEventSystem())
+                
                 .Add(new PlayerGroundCheckSystem())
                 .Add(new PlayerInputSystem())
                 .Add(new PlayerMovementSystem())
                 .Add(new PlayerMouseInputSystem())
                 .Add(new PlayerMouseLookSystem())
                 .Add(new PlayerJumpSystem())
+                .Add(new CameraSwitcherSystem())
                 ;
         }
 
