@@ -28,18 +28,18 @@ namespace Project.Scripts.Move
             foreach (var i in _mouseLookFilter)
             {
                 ref var model = ref _mouseLookFilter.Get2(i);
-                ref var lookComponent = ref _mouseLookFilter.Get3(i);
+                ref var mouseLookComponent = ref _mouseLookFilter.Get3(i);
 
-                var axisX = lookComponent.Direction.x;
-                var axisY = lookComponent.Direction.y;
+                var axisX = mouseLookComponent.Direction.x;
+                var axisY = mouseLookComponent.Direction.y;
                 
                 var rotateX = 
-                    Quaternion.AngleAxis(axisX, Vector3.up * Time.deltaTime * lookComponent.Sensitivity);
+                    Quaternion.AngleAxis(axisX, Vector3.up * Time.deltaTime * mouseLookComponent.Sensitivity);
                 var rotateY = 
-                    Quaternion.AngleAxis(axisY, Vector3.right * Time.deltaTime * lookComponent.Sensitivity);
+                    Quaternion.AngleAxis(axisY, Vector3.right * Time.deltaTime * mouseLookComponent.Sensitivity);
                 
                 model.ModelTransform.rotation = _startTransformRotation * rotateX;
-                lookComponent.Camera.transform.rotation = model.ModelTransform.rotation * rotateY;
+                mouseLookComponent.Camera.transform.rotation = model.ModelTransform.rotation * rotateY;
             }
         }
     }
