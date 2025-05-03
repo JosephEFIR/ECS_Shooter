@@ -1,5 +1,6 @@
 ﻿using Leopotam.Ecs;
 using Project.Scripts.Move;
+using Project.Scripts.Other;
 using UnityEngine;
 using Voody.UniLeo;
 
@@ -58,6 +59,7 @@ namespace Project.Scripts.Common
                 .Add(new PlayerMouseLookSystem())
                 .Add(new PlayerJumpSystem())
                 .Add(new CameraSwitcherSystem())
+                .Add(new CursorLockedSystem())
                 ;
         }
 
