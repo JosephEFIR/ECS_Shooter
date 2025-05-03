@@ -1087,7 +1087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &578985389
 Transform:
   m_ObjectHideFlags: 0
@@ -1201,8 +1201,8 @@ MonoBehaviour:
       Enabled: 0
       YOffset: 0
     Strategy: 0
-    MaximumEffort: 4
-    SmoothingTime: 0
+    MaximumEffort: 1
+    SmoothingTime: 2
     Damping: 0.4
     DampingWhenOccluded: 0.2
   ShotQualityEvaluation:
@@ -1520,7 +1520,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 227374043}
+    TrackingTarget: {fileID: 0}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -2133,7 +2133,7 @@ MonoBehaviour:
     DefaultMode: 2
   DefaultBlend:
     Style: 1
-    Time: 2
+    Time: 0.5
     CustomCurve:
       serializedVersion: 2
       m_Curve: []
