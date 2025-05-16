@@ -1,16 +1,15 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Project.Scripts.Move
 {
-    [Serializable]
-    public struct PlayerMovableComponent
+    internal struct PlayerMovableComponent
     {
         public CharacterController CharController;
+        
         public int Speed;
         public int RunSpeed;
-        public Vector3 velocity;
-        public float gravity;
+        public float Gravity;
+        public Vector3 Velocity;
     }
     
 }

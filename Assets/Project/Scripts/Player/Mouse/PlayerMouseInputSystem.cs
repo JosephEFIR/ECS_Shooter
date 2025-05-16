@@ -6,7 +6,7 @@ namespace Project.Scripts.Move
 {
     sealed class PlayerMouseInputSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerTag,MouseLookComponent> _playerFilter = null;
+        private readonly EcsFilter<PlayerComponent,MouseLookComponent> _playerFilter = null;
 
         private float _axisX;
         private float _axisY;
@@ -22,7 +22,6 @@ namespace Project.Scripts.Move
                 
                 lookComponent.Direction.x = _axisX;
                 lookComponent.Direction.y = _axisY;
-                
             }
         }
 

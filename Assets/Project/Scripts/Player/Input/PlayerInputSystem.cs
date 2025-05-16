@@ -6,7 +6,7 @@ namespace Project.Scripts.Move
 {
     sealed class PlayerInputSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerTag,DirectionComponent> _directionFilter = null;
+        private readonly EcsFilter<PlayerComponent,DirectionComponent> _directionFilter = null;
 
         private float _horizontalAxis;
         private float _verticalAxis;

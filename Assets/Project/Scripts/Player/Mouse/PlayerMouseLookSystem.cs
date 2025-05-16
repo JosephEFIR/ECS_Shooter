@@ -7,8 +7,8 @@ namespace Project.Scripts.Move
 {
     sealed class PlayerMouseLookSystem : IEcsInitSystem, IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerTag> _playerFilter = null;
-        private readonly EcsFilter<PlayerTag, ModelComponent, MouseLookComponent> _mouseLookFilter = null;
+        private readonly EcsFilter<PlayerComponent> _playerFilter = null;
+        private readonly EcsFilter<PlayerComponent, ModelComponent, MouseLookComponent> _mouseLookFilter = null;
 
         private Quaternion _startTransformRotation;
 
