@@ -11,6 +11,7 @@ namespace Project.Scripts.Move
         public int RunSpeed;
         public float Gravity;
         public Vector3 Velocity;
+        public bool IsRun;
         //Jump
         public LayerMask GroundLayer;
         public bool IsGrounded;

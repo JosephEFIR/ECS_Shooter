@@ -34,9 +34,11 @@ namespace Project.Scripts.Move
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
                     characterController.Move(rawDirection * runSpeed * Time.deltaTime);
+                    movableComponent.IsRun = true;
                     return;
                 }
                 
+                movableComponent.IsRun = false;
                 characterController.Move(rawDirection * speed * Time.deltaTime);
             }
         }
