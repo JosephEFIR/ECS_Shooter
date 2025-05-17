@@ -6,15 +6,15 @@ namespace Project.Scripts.Move
 {
     sealed class PlayerGroundCheckSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerComponent,GroundCheckSphereComponent> _groundFilter = null;
+        private readonly EcsFilter<PlayerMovableComponent> _groundFilter = null;
         
         public void Run()
         {
             foreach (var i in _groundFilter)
             {
-                ref var groundCheck = ref _groundFilter.Get2(i);
+                ref var groundCheck = ref _groundFilter.Get1(i);
                 
-                groundCheck.isGrounded = Physics.CheckSphere(groundCheck.groundCheckSphere.position, groundCheck.groundDistance, groundCheck.mask);
+                groundCheck.IsGrounded= Physics.CheckSphere(groundCheck.GroundCheckTransform.position, groundCheck.GroundDistance, groundCheck.GroundLayer);
             }
         }
     }

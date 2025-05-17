@@ -52,6 +52,7 @@ namespace Project.Scripts.Common
         {
             _systems
                 .Add(new PlayerPreInitSystem())
+                .Add(new PlayerMoveInitSystem())
                     
                 .Add(new PlayerJumpSendEventSystem())
                 .Add(new CameraSwitcherSendEventSystem())

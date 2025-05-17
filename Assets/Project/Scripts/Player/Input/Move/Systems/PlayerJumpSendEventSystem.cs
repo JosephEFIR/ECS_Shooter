@@ -6,7 +6,7 @@ namespace Project.Scripts.Move
 {
     sealed class PlayerJumpSendEventSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerComponent, JumpComponent> _playerFilter = null;
+        private readonly EcsFilter<PlayerMovableComponent> _playerFilter = null;
         
         public void Run()
         {

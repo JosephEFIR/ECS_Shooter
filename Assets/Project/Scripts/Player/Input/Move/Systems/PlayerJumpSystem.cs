@@ -6,21 +6,19 @@ namespace Project.Scripts.Move
 {
     sealed class PlayerJumpSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerComponent,GroundCheckSphereComponent,JumpComponent,JumpEvent> _jumpFilter = null;
+        private readonly EcsFilter<PlayerMovableComponent,JumpEvent> _jumpFilter = null;
         
         public void Run()
         {
             foreach (var i in _jumpFilter)
             {
-                ref var entity = ref _jumpFilter.GetEntity(i);
-                ref var groundCheck = ref _jumpFilter.Get2(i);
-                ref var jumpComponent = ref _jumpFilter.Get3(i);
-                ref var movable = ref entity.Get<PlayerMovableComponent>();
-                ref var velocity = ref movable.Velocity;
+                ref var movableComponent = ref _jumpFilter.Get1(i);
+                ref var velocity = ref movableComponent.Velocity;
+                ref var grounded = ref movableComponent.IsGrounded;
                 
-                if(!groundCheck.isGrounded) continue;
+                if(!grounded) continue;
 
-                velocity.y = MathF.Sqrt(jumpComponent.Force * -2F * movable.Gravity);
+                velocity.y = MathF.Sqrt(movableComponent.JumpForce * -2F * movableComponent.Gravity);
             }
         }
     }
