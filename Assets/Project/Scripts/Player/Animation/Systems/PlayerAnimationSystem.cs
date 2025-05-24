@@ -23,12 +23,18 @@ namespace Project.Scripts.Animation
 
         private void Move(Animator animator, CharacterController characterController)
         {
-            animator.SetFloat("Speed", characterController.velocity.magnitude);
+            //Extenstion не судьба написать для аниматора? что бы не писать постоянно ToString?
+            animator.SetFloat(EAnimParameter.Speed.ToString(), characterController.velocity.magnitude);
+            
+            if (Input.GetKey(KeyCode.W)) animator.SetTrigger(EAnimParameter.isForward.ToString());
+            if (Input.GetKey(KeyCode.S)) animator.SetTrigger(EAnimParameter.isBackward.ToString());
+            if (Input.GetKey(KeyCode.A)) animator.SetTrigger(EAnimParameter.isLeft.ToString());
+            if (Input.GetKey(KeyCode.D)) animator.SetTrigger(EAnimParameter.isRight.ToString());
         }
 
         private void Run(Animator animator, bool isRun)
         {
-            animator.SetBool("isRun", isRun);
+            animator.SetBool(EAnimParameter.isRun.ToString(), isRun);
         }
         
     }
