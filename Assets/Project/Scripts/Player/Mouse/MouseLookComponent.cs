@@ -7,6 +7,6 @@ namespace Project.Scripts.Move
         public Vector3 Direction;
         
         public float Sensitivity;
-        public Camera Camera;
+        public Camera Camera; //TODO Параметр градусов в сек
     }
 }

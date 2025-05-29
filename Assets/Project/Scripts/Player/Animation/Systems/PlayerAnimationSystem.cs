@@ -1,14 +1,22 @@
 ﻿using Leopotam.Ecs;
 using Project.Scripts.Move;
-using Project.Scripts.Tags;
 using UnityEngine;
 
 namespace Project.Scripts.Animation
 {
     sealed class PlayerAnimationSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerMovableComponent,PlayerAnimationComponent> _playerAnimationFilter = null;
+        private readonly EcsFilter<PlayerMovableComponent, PlayerAnimationComponent> _playerAnimationFilter = null;
         
+        private float velocityZ;
+        private float velocityX;
+        private float walkAcceleration = 3f;
+        private float runAcceleration = 5f;
+        private float deceleration = 4f;
+        private float maxWalkValue = 0.5f;
+        private float maxRunValue = 2f;     
+        //TODO Config?
+
         public void Run()
         {
             foreach (var i in _playerAnimationFilter)
@@ -16,27 +24,44 @@ namespace Project.Scripts.Animation
                 ref var movableComponent = ref _playerAnimationFilter.Get1(i);
                 ref var animComponent = ref _playerAnimationFilter.Get2(i);
                 
-                Move(animComponent.Animator, movableComponent.CharController);
-                Run(animComponent.Animator, movableComponent.IsRun);
+                Move(animComponent.Animator, movableComponent);
             }
         }
 
-        private void Move(Animator animator, CharacterController characterController)
+        private void Move(Animator animator, PlayerMovableComponent movableComponent) //TODO REFACTORE CODE PLS OMG
         {
-            //Extenstion не судьба написать для аниматора? что бы не писать постоянно ToString?
-            animator.SetFloat(EAnimParameter.Speed.ToString(), characterController.velocity.magnitude);
+            ref var character = ref movableComponent.CharController;
+            ref var isRun = ref movableComponent.IsRun;
             
-            if (Input.GetKey(KeyCode.W)) animator.SetTrigger(EAnimParameter.isForward.ToString());
-            if (Input.GetKey(KeyCode.S)) animator.SetTrigger(EAnimParameter.isBackward.ToString());
-            if (Input.GetKey(KeyCode.A)) animator.SetTrigger(EAnimParameter.isLeft.ToString());
-            if (Input.GetKey(KeyCode.D)) animator.SetTrigger(EAnimParameter.isRight.ToString());
+            bool forward = Input.GetKey(KeyCode.W);
+            bool backward = Input.GetKey(KeyCode.S);
+            bool left = Input.GetKey(KeyCode.A);
+            bool right = Input.GetKey(KeyCode.D);
+            
+            float currentAcceleration = isRun ? runAcceleration : walkAcceleration;
+            float currentMaxValue = isRun ? maxRunValue : maxWalkValue;
+            
+            if (forward && velocityZ < currentMaxValue)
+                velocityZ += Time.deltaTime * currentAcceleration;
+            else if (backward && velocityZ > -currentMaxValue)
+                velocityZ -= Time.deltaTime * currentAcceleration;
+            else
+            {
+                velocityZ = Mathf.MoveTowards(velocityZ, 0, Time.deltaTime * deceleration);
+            }
+            
+            if (left && velocityX > -currentMaxValue)
+                velocityX -= Time.deltaTime * currentAcceleration;
+            else if (right && velocityX < currentMaxValue)
+                velocityX += Time.deltaTime * currentAcceleration;
+            else
+            {
+                velocityX = Mathf.MoveTowards(velocityX, 0, Time.deltaTime * deceleration);
+            }
+            
+            animator.SetFloat(EAnimParameter.VelocityX.ToString(), velocityX);
+            animator.SetFloat(EAnimParameter.VelocityZ.ToString(), velocityZ);
+            animator.SetFloat(EAnimParameter.Speed.ToString(), character.velocity.magnitude);
         }
-
-        private void Run(Animator animator, bool isRun)
-        {
-            animator.SetBool(EAnimParameter.isRun.ToString(), isRun);
-        }
-        
     }
 }
-

@@ -1,13 +1,12 @@
-﻿using System;
-using Unity.Cinemachine;
+﻿using Unity.Cinemachine;
 
 namespace Project.Scripts.Move
 {
-    [Serializable]
-    public struct CameraSwitcherComponent
+    internal struct CameraSwitcherComponent
     {
         public CinemachineCamera firstPersonViewCam;
         public CinemachineCamera thirdPersonViewCam;
+        public bool isFPV;
     }
 }
 

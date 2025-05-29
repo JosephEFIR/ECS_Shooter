@@ -11,8 +11,10 @@ namespace Project.Scripts.Move
         {
             foreach (var i in _camerasFilter)
             {
-                ref var fpvCamera = ref _cameraSwitchFilter.Get1(i).firstPersonViewCam;
+                ref var cameraSwitchComponent = ref _cameraSwitchFilter.Get1(i);
+                ref var fpvCamera = ref cameraSwitchComponent.firstPersonViewCam;
                 fpvCamera.gameObject.SetActive(true);
+                cameraSwitchComponent.isFPV = true;
             }
         }
         
@@ -20,18 +22,21 @@ namespace Project.Scripts.Move
         {
             foreach (var i in _cameraSwitchFilter)
             {
-                ref var fpvCamera = ref _cameraSwitchFilter.Get1(i).firstPersonViewCam;
-                ref var tpvCamera = ref _cameraSwitchFilter.Get1(i).thirdPersonViewCam;
+                ref var cameraSwitchComponent = ref _cameraSwitchFilter.Get1(i);
+                ref var fpvCamera = ref cameraSwitchComponent.firstPersonViewCam;
+                ref var tpvCamera = ref cameraSwitchComponent.thirdPersonViewCam;
 
                 if (fpvCamera.gameObject.activeInHierarchy)
                 {
                     tpvCamera.gameObject.SetActive(true);
                     fpvCamera.gameObject.SetActive(false);
+                    cameraSwitchComponent.isFPV = false;
                 }
                 else
                 {
                     tpvCamera.gameObject.SetActive(false);
                     fpvCamera.gameObject.SetActive(true);
+                    cameraSwitchComponent.isFPV = true;
                 }
             }
         }

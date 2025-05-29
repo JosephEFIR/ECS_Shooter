@@ -18,6 +18,10 @@ namespace Project.Scripts.Player
                 ref var playerComponent = ref playerEntity.Get<PlayerComponent>();
                 
                 playerEntity.Get<PlayerAnimationComponent>().Animator = playerComponent.Animator;
+                
+                ref var cameraSwitchComponent = ref playerEntity.Get<CameraSwitcherComponent>();
+                cameraSwitchComponent.firstPersonViewCam = playerComponent.FPVCamera;
+                cameraSwitchComponent.thirdPersonViewCam = playerComponent.TPVCamera;
             }
         }
     }

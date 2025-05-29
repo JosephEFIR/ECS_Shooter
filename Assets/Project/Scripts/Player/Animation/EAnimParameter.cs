@@ -4,10 +4,7 @@
     public enum EAnimParameter
     {
         Speed,
-        isRun,
-        isForward,
-        isBackward,
-        isLeft,
-        isRight,
+        VelocityZ,
+        VelocityX,
     }
 }

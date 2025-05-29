@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
   speed: 3
-  runSpeed: 10
-  jumpPower: 1.8
+  runSpeed: 6
+  jumpPower: 1
   gravity: -27
   groundLayer:
     serializedVersion: 2
