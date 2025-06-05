@@ -4,7 +4,7 @@ namespace Project.Scripts.Move
 {
     internal struct PlayerMovableComponent
     {
-        public CharacterController CharController;
+        public Rigidbody Rigidbody;
         
         //OnlyMove
         public int Speed;

@@ -12,7 +12,6 @@ namespace Project.Scripts.Configs
         [SerializeField] private int runSpeed;
         [Range(0, 10)]
         [SerializeField] private float jumpPower;
-        [SerializeField] private int gravity;
         
         [SerializeField] private LayerMask groundLayer;
         [Range(0, 2)]
@@ -26,7 +25,6 @@ namespace Project.Scripts.Configs
         public int Speed => speed;
         public int RunSpeed => runSpeed;
         public float JumpPower => jumpPower;
-        public int Gravity => gravity;
         public float MouseSensitivity => mouseSensitivity;
         public LayerMask GroundLayer => groundLayer;
         public float GroundDistance => groundDistance;

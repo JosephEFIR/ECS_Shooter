@@ -16,10 +16,9 @@ namespace Project.Scripts.Move
                 ref var playerComponent = ref playerEntity.Get<PlayerComponent>();
                 
                 ref var movableComponent = ref playerEntity.Get<PlayerMovableComponent>();
-                movableComponent.CharController = playerComponent.CharacterController;
+                movableComponent.Rigidbody = playerComponent.Rigidbody;
                 movableComponent.Speed = playerComponent.Config.Speed;
                 movableComponent.RunSpeed = playerComponent.Config.RunSpeed;
-                movableComponent.Gravity = playerComponent.Config.Gravity;
                 movableComponent.JumpForce = playerComponent.Config.JumpPower;
                 movableComponent.GroundCheckTransform = playerComponent.GroundCheck;
                 movableComponent.GroundDistance = playerComponent.Config.GroundDistance;

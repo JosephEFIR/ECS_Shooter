@@ -60,7 +60,6 @@ namespace Project.Scripts.Common
                 .Add(new PlayerGroundCheckSystem())
                 .Add(new PlayerInputSystem())
                 .Add(new PlayerMovementSystem())
-                .Add(new PlayerModelRotateSystem())
                 .Add(new PlayerMouseInputSystem())
                 .Add(new PlayerMouseLookSystem())
                 .Add(new PlayerJumpSystem())

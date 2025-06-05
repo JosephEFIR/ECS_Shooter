@@ -16,7 +16,7 @@ namespace Project.Scripts.Tags
         public CinemachineCamera FPVCamera;
         public CinemachineCamera TPVCamera;
         [Header("Movement & animation")]
-        public CharacterController CharacterController;
+        public Rigidbody Rigidbody;
         public Animator Animator;
         public Transform Position;
         public Transform GroundCheck;

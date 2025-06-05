@@ -55,12 +55,12 @@ namespace Project.Scripts.Move
 
         private void ThirdPersonView(ModelComponent model, MouseLookComponent mouseLookComponent, PlayerMovableComponent movable)
         {
-            if (movable.CharController.velocity.sqrMagnitude > 0.01f)
+            if (movable.Rigidbody.linearVelocity.sqrMagnitude > 0.01f)
             {
                 Vector3 cameraForward = mouseLookComponent.Camera.transform.forward;
                 cameraForward.y = 0f;
                 cameraForward.Normalize();
-
+            
                 Quaternion targetRotation = Quaternion.LookRotation(cameraForward);
                 model.ModelTransform.rotation = Quaternion.RotateTowards(
                     model.ModelTransform.rotation,

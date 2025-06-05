@@ -6,5 +6,8 @@
         Speed,
         VelocityZ,
         VelocityX,
+        VelocityY,
+        JumpTrigger,
+        IsGrounded,
     }
 }

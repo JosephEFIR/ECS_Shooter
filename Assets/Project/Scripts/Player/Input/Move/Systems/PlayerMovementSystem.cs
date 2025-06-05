@@ -1,14 +1,12 @@
 ﻿using Leopotam.Ecs;
-using Project.Scripts.Animation;
 using Project.Scripts.Common;
-using Project.Scripts.Tags;
 using UnityEngine;
 
 namespace Project.Scripts.Move
 {
     sealed class PlayerMovementSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<ModelComponent,PlayerMovableComponent, DirectionComponent> _movableFilter = null;
+        private readonly EcsFilter<ModelComponent,PlayerMovableComponent> _movableFilter = null;
         
         public void Run()
         {
@@ -16,30 +14,30 @@ namespace Project.Scripts.Move
             {
                 ref var modelComponent = ref _movableFilter.Get1(variable);
                 ref var movableComponent = ref _movableFilter.Get2(variable);
-                ref var directionComponent = ref _movableFilter.Get3(variable);
                 
-                ref var direction = ref directionComponent.Direction;
                 ref var transform = ref modelComponent.ModelTransform;
 
-                ref var characterController = ref movableComponent.CharController;
-                ref var speed = ref movableComponent.Speed;
+                ref var rigidbody = ref movableComponent.Rigidbody;
+                ref var walkSpeed = ref movableComponent.Speed;
                 ref var runSpeed = ref movableComponent.RunSpeed;
                 
-                var rawDirection = (transform.right * direction.x) + (transform.forward * direction.y);
+                float moveHorizontal = Input.GetAxis("Horizontal");
+                float moveVertical = Input.GetAxis("Vertical");
+
                 
-                ref var velocity = ref movableComponent.Velocity;
-                velocity.y += movableComponent.Gravity * Time.deltaTime;
+                Vector3 movement = transform.forward * moveVertical + transform.right * moveHorizontal;
+                movement.y = 0f;
                 
-                characterController.Move(velocity * Time.deltaTime);
-                if (Input.GetKey(KeyCode.LeftShift))
-                {
-                    characterController.Move(rawDirection * runSpeed * Time.deltaTime);
-                    movableComponent.IsRun = true;
-                    return;
-                }
+                if (movement.magnitude > 1f)
+                    movement.Normalize();
                 
-                movableComponent.IsRun = false;
-                characterController.Move(rawDirection * speed * Time.deltaTime);
+                float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
+                movableComponent.IsRun = Input.GetKey(KeyCode.LeftShift);
+                
+                Vector3 targetVelocity = movement * currentSpeed;
+                
+                targetVelocity.y = rigidbody.linearVelocity.y;
+                rigidbody.linearVelocity = targetVelocity;
             }
         }
     }
