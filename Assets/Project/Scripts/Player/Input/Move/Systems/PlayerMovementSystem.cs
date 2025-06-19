@@ -28,13 +28,12 @@ namespace Project.Scripts.Move
                 Vector3 movement = transform.forward * moveVertical + transform.right * moveHorizontal;
                 movement.y = 0f;
                 
-                if (movement.magnitude > 1f)
-                    movement.Normalize();
+                if (movement.magnitude > 1f) movement.Normalize();
                 
-                float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
-                movableComponent.IsRun = Input.GetKey(KeyCode.LeftShift);
+                float currentSpeed = Input.GetKey(KeyCode.LeftShift) & !movableComponent.IsCrouched ? runSpeed : walkSpeed; //RunSystem?
+                movableComponent.IsRun = Input.GetKey(KeyCode.LeftShift) & !movableComponent.IsCrouched;
                 
-                Vector3 targetVelocity = movement * currentSpeed;
+                Vector3 targetVelocity = movement * currentSpeed; 
                 
                 targetVelocity.y = rigidbody.linearVelocity.y;
                 rigidbody.linearVelocity = targetVelocity;

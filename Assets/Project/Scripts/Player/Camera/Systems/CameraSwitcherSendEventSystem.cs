@@ -5,7 +5,7 @@ namespace Project.Scripts.Move
 {
     sealed class CameraSwitcherSendEventSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<CameraSwitcherComponent> _filter = null;
+        private readonly EcsFilter<CamerasComponent> _filter = null;
         
         public void Run()
         {

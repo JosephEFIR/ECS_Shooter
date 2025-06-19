@@ -13,9 +13,9 @@ namespace Project.Scripts.Move
         {
             foreach (var i in _groundFilter)
             {
-                ref var groundCheck = ref _groundFilter.Get1(i);
+                ref var movableComponent = ref _groundFilter.Get1(i);
                 
-                groundCheck.IsGrounded= Physics.CheckSphere(groundCheck.GroundCheckTransform.position, groundCheck.GroundDistance, groundCheck.GroundLayer);
+                movableComponent.IsGrounded = movableComponent.GroundChecker.IsGround;
             }
         }
     }

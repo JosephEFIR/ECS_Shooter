@@ -9,5 +9,6 @@
         VelocityY,
         JumpTrigger,
         IsGrounded,
+        IsCrouched,
     }
 }

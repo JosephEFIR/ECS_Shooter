@@ -1,6 +1,5 @@
 ﻿using Leopotam.Ecs;
 using Project.Scripts.Move;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Project.Scripts.Animation
@@ -9,15 +8,19 @@ namespace Project.Scripts.Animation
     {
         private readonly EcsFilter<PlayerMovableComponent, PlayerAnimationComponent> _playerAnimationFilter = null;
         
-        private float velocityX;
-        private float velocityY;
-        private float velocityZ;
-        private float walkAcceleration = 3f;
-        private float runAcceleration = 5f;
-        private float deceleration = 4f;
-        private float maxWalkValue = 1f;
-        private float maxRunValue = 2f;     
-        //TODO Config?
+        
+        //CONFIG?
+        private float _velocityX;
+        private float _velocityZ;
+        private float _currentVelocityY;
+        private float _smoothTime = 0.2f; 
+        private Vector3 _smoothDampRef; 
+        
+        private float _walkAcceleration = 5f;
+        private float _runAcceleration = 10f;
+        private float _deceleration = 4f;
+        private float _maxWalkValue = 2f;
+        private float _maxRunValue = 4f;
 
         public void Run()
         {
@@ -25,12 +28,14 @@ namespace Project.Scripts.Animation
             {
                 ref var movableComponent = ref _playerAnimationFilter.Get1(i);
                 ref var animComponent = ref _playerAnimationFilter.Get2(i);
+
+                Animator animator = animComponent.Animator;
                 
-                animComponent.Animator.SetFloat(EAnimParameter.VelocityX.ToString(), velocityX);
-                animComponent.Animator.SetFloat(EAnimParameter.VelocityY.ToString(), velocityY);
-                animComponent.Animator.SetFloat(EAnimParameter.VelocityZ.ToString(), velocityZ);
-                animComponent.Animator.SetFloat(EAnimParameter.Speed.ToString(), movableComponent.Rigidbody.linearVelocity.magnitude);
-                animComponent.Animator.SetBool(EAnimParameter.IsGrounded.ToString(), movableComponent.IsGrounded);
+                animator.SetFloat(EAnimParameter.VelocityX.ToString(), _velocityX);
+                animator.SetFloat(EAnimParameter.VelocityZ.ToString(), _velocityZ);
+                animator.SetFloat(EAnimParameter.Speed.ToString(), movableComponent.Rigidbody.linearVelocity.magnitude);
+                animator.SetBool(EAnimParameter.IsGrounded.ToString(), movableComponent.IsGrounded);
+             
                 
                 MoveSides(movableComponent);
                 Jump(animComponent.Animator);
@@ -38,60 +43,41 @@ namespace Project.Scripts.Animation
             }
         }
 
+        private void MoveSides(PlayerMovableComponent movableComponent)
+        {
+            float targetVelocityX = 0f;
+            float targetVelocityZ = 0f;
+            
+            if (Input.GetKey(KeyCode.W)) targetVelocityZ = movableComponent.IsRun ? _maxRunValue : _maxWalkValue;
+            if (Input.GetKey(KeyCode.S)) targetVelocityZ = movableComponent.IsRun ? -_maxRunValue : -_maxWalkValue;
+            if (Input.GetKey(KeyCode.A)) targetVelocityX = movableComponent.IsRun ? -_maxRunValue : -_maxWalkValue;
+            if (Input.GetKey(KeyCode.D)) targetVelocityX = movableComponent.IsRun ? _maxRunValue : _maxWalkValue;
+            
+            _velocityX = Mathf.SmoothDamp(_velocityX, targetVelocityX, ref _smoothDampRef.x, _smoothTime);
+            _velocityZ = Mathf.SmoothDamp(_velocityZ, targetVelocityZ, ref _smoothDampRef.z, _smoothTime);
+
+            if (Mathf.Abs(targetVelocityX) < 0.1f)
+            {
+                _velocityX = Mathf.MoveTowards(_velocityX, 0, _deceleration * Time.deltaTime);
+            }
+
+            if (Mathf.Abs(targetVelocityZ) < 0.1f)
+            {
+                _velocityZ = Mathf.MoveTowards(_velocityZ, 0, _deceleration * Time.deltaTime);
+            }
+        }
+
         private void Jump(Animator animator)
         {
-            bool jump = Input.GetKeyDown(KeyCode.Space);
-
-            if (jump) animator.SetTrigger(EAnimParameter.JumpTrigger.ToString());
+            if (Input.GetKeyDown(KeyCode.Space)) animator.SetTrigger(EAnimParameter.JumpTrigger.ToString());
         }
 
         private void Landing(Animator animator, PlayerMovableComponent movableComponent)
         {
-            if (!movableComponent.IsGrounded)
-            {
-                animator.ResetTrigger(EAnimParameter.JumpTrigger.ToString());
-                animator.SetFloat(EAnimParameter.VelocityY.ToString(), velocityY);
-            }
-            velocityY = movableComponent.Rigidbody.linearVelocity.y;
-        }
+            _currentVelocityY = movableComponent.Rigidbody.linearVelocity.y;
+            animator.SetFloat(EAnimParameter.VelocityY.ToString(), _currentVelocityY);
 
-        private void MoveSides(PlayerMovableComponent movableComponent) 
-        {
-            ref var isRun = ref movableComponent.IsRun;
-            
-            bool forward = Input.GetKey(KeyCode.W);
-            bool backward = Input.GetKey(KeyCode.S);
-            bool left = Input.GetKey(KeyCode.A);
-            bool right = Input.GetKey(KeyCode.D);
-            
-            float currentAcceleration = isRun ? runAcceleration : walkAcceleration;
-            float currentMaxValue = isRun ? maxRunValue : maxWalkValue;
-
-            if (forward && velocityZ < currentMaxValue)
-            {
-                velocityZ += Time.deltaTime * currentAcceleration;
-            }
-            else if (backward && velocityZ > -currentMaxValue)
-            {
-                velocityZ -= Time.deltaTime * currentAcceleration;
-            }
-            else
-            {
-                velocityZ = Mathf.MoveTowards(velocityZ, 0, Time.deltaTime * deceleration);
-            }
-
-            if (left && velocityX > -currentMaxValue)
-            {
-                velocityX -= Time.deltaTime * currentAcceleration;
-            }
-            else if (right && velocityX < currentMaxValue)
-            {
-                velocityX += Time.deltaTime * currentAcceleration;
-            }
-            else
-            {
-                velocityX = Mathf.MoveTowards(velocityX, 0, Time.deltaTime * deceleration);
-            }
+            if (!movableComponent.IsGrounded) animator.ResetTrigger(EAnimParameter.JumpTrigger.ToString());
         }
     }
 }

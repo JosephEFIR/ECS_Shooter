@@ -4,8 +4,8 @@ namespace Project.Scripts.Move
 {
     sealed class CameraSwitcherSystem : IEcsInitSystem,IEcsRunSystem
     {
-        private readonly EcsFilter<CameraSwitcherComponent, CameraSwitchEvent> _cameraSwitchFilter = null;
-        private readonly EcsFilter<CameraSwitcherComponent> _camerasFilter = null;
+        private readonly EcsFilter<CamerasComponent, CameraSwitchEvent> _cameraSwitchFilter = null;
+        private readonly EcsFilter<CamerasComponent> _camerasFilter = null;
         
         public void Init()
         {

@@ -20,9 +20,9 @@ namespace Project.Scripts.Move
                 movableComponent.Speed = playerComponent.Config.Speed;
                 movableComponent.RunSpeed = playerComponent.Config.RunSpeed;
                 movableComponent.JumpForce = playerComponent.Config.JumpPower;
-                movableComponent.GroundCheckTransform = playerComponent.GroundCheck;
-                movableComponent.GroundDistance = playerComponent.Config.GroundDistance;
-                movableComponent.GroundLayer = playerComponent.Config.GroundLayer;
+                movableComponent.GroundChecker = playerComponent.GroundCheck;
+                movableComponent.Collider  = playerComponent.Collider;
+                movableComponent.CrouchChecker = playerComponent.CrouchChecker;
                 
                 playerEntity.Get<DirectionComponent>();
                 playerEntity.Get<ModelComponent>().ModelTransform = playerComponent.Position;

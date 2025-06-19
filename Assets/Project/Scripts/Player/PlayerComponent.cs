@@ -1,5 +1,6 @@
 ﻿using System;
 using Project.Scripts.Configs;
+using Project.Scripts.Player.Triggers;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -19,6 +20,9 @@ namespace Project.Scripts.Tags
         public Rigidbody Rigidbody;
         public Animator Animator;
         public Transform Position;
-        public Transform GroundCheck;
+        [Header("Colliders & Hitboxes")]
+        public CapsuleCollider Collider;
+        public CrouchChecker CrouchChecker;
+        public GroundChecker GroundCheck;
     }
 }
