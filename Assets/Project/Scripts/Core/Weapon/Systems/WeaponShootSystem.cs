@@ -54,20 +54,25 @@ namespace Project.Scripts.Weapon
             }
         }
 
-        private void Shoot(WeaponComponent  weapon)
+        private void Shoot(WeaponComponent weapon)
         {
-            //TODO че нибудь поадекватней напиши
-            BulletView bulletView = weapon.BulletPool.GetObject(); 
-            EcsEntity bulletEntity = _world.NewEntity(); 
-            ref var bullet = ref bulletEntity.Get<BulletComponent>(); 
+            BulletView bulletView = weapon.BulletPool.GetObject();
+            EcsEntity bulletEntity = _world.NewEntity();
+            ref var bullet = ref bulletEntity.Get<BulletComponent>();
             bullet.BulletPool = weapon.BulletPool;
-            bulletView.Entity = bulletEntity; 
-  
+            bulletView.Entity = bulletEntity;
+            
+            bulletView.transform.parent = null;
+    
             bulletView.transform.position = weapon.BulletSpawnPoint.position;
             bulletView.transform.rotation = weapon.BulletSpawnPoint.rotation;
-            
+    
             Rigidbody rb = bulletView.GetComponent<Rigidbody>();
-            rb.AddForce(weapon.BulletSpawnPoint.forward * 10f, ForceMode.Impulse);
+            
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            
+            rb.AddForce(weapon.BulletSpawnPoint.forward * 10F, ForceMode.Impulse); //TODO FOR DEBUG
         }
     }
 }

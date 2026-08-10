@@ -2,6 +2,8 @@
   "dependencies": {
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
     "com.leopotam.ecs": "https://github.com/Leopotam/ecs.git",
+    "com.unity.ai.assistant": "2.17.0-pre.1",
+    "com.unity.ai.inference": "2.6.1",
     "com.unity.animation.rigging": "1.4.1",
     "com.unity.cinemachine": "3.1.3",
     "com.unity.collab-proxy": "2.12.4",

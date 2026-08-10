@@ -26,7 +26,7 @@ namespace Project.Scripts.Weapon
                 weaponComponent.active = false;
                 
                 BulletView bulletView = config.BulletView;
-                weaponComponent.BulletPool = CreateBullets(config.MagazineSize, bulletView, weaponComponent.BulletSpawnPoint);
+                weaponComponent.BulletPool = CreateBullets(config.MagazineSize, bulletView);
                 
                 entity.Del<InitComponent>();
                 entity.Get<InitializedEvent>();
@@ -34,11 +34,12 @@ namespace Project.Scripts.Weapon
             }
         }
 
-        private BulletPool CreateBullets(int count, BulletView bulletView, Transform spawnPos)
+        private BulletPool CreateBullets(int count, BulletView bulletView)
         {
+            GameObject bulletParent = new GameObject("BulletPool");
             BulletPool bulletPool = new BulletPool();
             bulletPool.Prefab = bulletView;
-            bulletPool.CreatePool(count, spawnPos, spawnPos.parent);
+            bulletPool.CreatePool(count, null, bulletParent.transform);
             return bulletPool;
         }
     }
