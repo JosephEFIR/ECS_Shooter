@@ -74,7 +74,7 @@ namespace Project.Scripts.Common
                 .Add(new PlayerInitSystem())
                 .Add(new PlayerInventorySystem())
                 .Add(new PlayerJumpSendEventSystem())
-                .Add(new CameraSwitcherSendEventSystem())
+                //.Add(new CameraSwitcherSendEventSystem()) //TODO на доработке
                 .Add(new PlayerGroundCheckSystem())
                 .Add(new PlayerInputSystem())
                 .Add(new PlayerMovementSystem())

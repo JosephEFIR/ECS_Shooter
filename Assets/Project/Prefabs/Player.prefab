@@ -161,7 +161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8861960334432498515
 Transform:
   m_ObjectHideFlags: 0
@@ -429,7 +429,7 @@ Transform:
   m_GameObject: {fileID: 3682632927010213719}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.024, y: 0.1042, z: 0.0319}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -476,7 +476,7 @@ MonoBehaviour:
       m_Item7:
         transform: {fileID: 0}
         weight: 0
-    m_Offset: {x: 0.05, y: -0.04, z: 0.12}
+    m_Offset: {x: 0.05, y: -0.03, z: 0.12}
     m_ConstrainedAxes:
       x: 1
       y: 1
@@ -1365,8 +1365,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7489804502375867739}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1753251, y: 0.38286325, z: 0.36934206}
+  m_LocalRotation: {x: -0, y: -0, z: -6.562133e-17, w: 1}
+  m_LocalPosition: {x: 0.1753251, y: 0.38286307, z: 0.36934206}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3495,7 +3495,7 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 562549435457063084}
     - targetCorrespondingSourceObject: {fileID: -5671910290767253545, guid: f7d1fc450ec08f54ab8b31aeead794c3, type: 3}
-      insertIndex: 0
+      insertIndex: -1
       addedObject: {fileID: 4782340111085669328}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f7d1fc450ec08f54ab8b31aeead794c3, type: 3}
@@ -3788,10 +3788,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rig: {fileID: 365561398280811077}
   rigBuilder: {fileID: 4933917880762332362}
-  leftConstraint: {fileID: 5620335094005277847}
-  rightConstraint: {fileID: 8061812319918297352}
-  handIKAmount: 0
-  elbowIKAmount: 0
+  leftHandConstraint: {fileID: 5620335094005277847}
+  rightHandConstraint: {fileID: 8061812319918297352}
 --- !u!4 &3214626878259793978 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 877643626764280346, guid: f7d1fc450ec08f54ab8b31aeead794c3, type: 3}

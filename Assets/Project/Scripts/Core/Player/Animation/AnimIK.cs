@@ -7,17 +7,14 @@ namespace Project.Scripts.Animation
     {
         [SerializeField] private Rig rig; 
         [SerializeField] private RigBuilder rigBuilder;
-        [SerializeField] private TwoBoneIKConstraint leftConstraint;
-        [SerializeField] private TwoBoneIKConstraint rightConstraint;
+        [SerializeField] private TwoBoneIKConstraint leftHandConstraint;
+        [SerializeField] private TwoBoneIKConstraint rightHandConstraint;
         public Rig Rig => rig;
-
-        [Range(0, 1)] [SerializeField] private float handIKAmount = 1f;
-        [Range(0, 1)] [SerializeField] private float elbowIKAmount = 1F;
 
         public void SetIKTargets(Transform leftHand, Transform rightHand)
         {
-            leftConstraint.data.target = leftHand;
-            rightConstraint.data.target = rightHand;
+            leftHandConstraint.data.target = leftHand;
+            rightHandConstraint.data.target = rightHand;
             rigBuilder.Build();
         }
     }
