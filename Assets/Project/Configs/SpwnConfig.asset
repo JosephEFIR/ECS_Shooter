@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eff7afb8aa754e369b26ddf5dc977b23, type: 3}
+  m_Name: SpwnConfig
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 7844680045068738569, guid: 1665f7ee4459a9749b879a19ebed02c1, type: 3}
+  weaponPrefab: {fileID: 7500686552293364570, guid: 08de4e52f6e0d0c4c97f1362ded361c6, type: 3}
+  bulletPrefab: {fileID: 6405578897167248697, guid: 3a140c746d966b24eba607d8a201e771, type: 3}

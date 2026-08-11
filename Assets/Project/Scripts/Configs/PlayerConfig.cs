@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Project.Scripts.Weapon;
+using UnityEngine;
 
 namespace Project.Scripts.Configs
 {
@@ -16,7 +17,15 @@ namespace Project.Scripts.Configs
         [SerializeField] private LayerMask groundLayer;
         [Range(0, 2)]
         [SerializeField] private float groundDistance;
-        
+
+        [Header("Weapon")]
+        [SerializeField] private WeaponView weapon;
+
+        [Header("Animation")]
+        [Range(0, 1f)] 
+        [SerializeField] private float handIKAmount = 1F;
+        [Range(0, 1f)] 
+        [SerializeField] private float elbowIKAmount = 1F;
         
         [Header("Other")]
         [Range(0, 10)]
@@ -28,6 +37,9 @@ namespace Project.Scripts.Configs
         public float MouseSensitivity => mouseSensitivity;
         public LayerMask GroundLayer => groundLayer;
         public float GroundDistance => groundDistance;
+        public WeaponView Weapon => weapon;
+        public float HandIKAmount => handIKAmount;
+        public float ElbowIKAmount => elbowIKAmount;
     }
 }
 
