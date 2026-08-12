@@ -22,9 +22,9 @@ namespace Project.Scripts.Weapon
                 ref var canFire = ref weapon.CanFire;
                 ref var isFire = ref weapon.isFire;
                 
-                if(entity.Has<WeaponReloadEvent>() | totalAmmo <= 0) {return;}
+                if(entity.Has<WeaponReloadEvent>() | totalAmmo.Value <= 0) {return;}
 
-                if (magazineSize <= 0)
+                if (magazineSize.Value <= 0)
                 {
                     entity.Get<WeaponReloadEvent>();
                     isFire = false;
@@ -46,8 +46,8 @@ namespace Project.Scripts.Weapon
                     Shoot(weapon);
                     isFire = true;
                     
-                    magazineSize--;
-                    totalAmmo--;
+                    magazineSize.Value--;
+                    totalAmmo.Value--;
                     firerate = weapon.Config.FireRate;
                 }
                 Debug.Log(totalAmmo);

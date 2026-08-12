@@ -18,25 +18,25 @@ namespace Project.Scripts.Weapon
                 ref var magazineSize = ref weapon.MagazineSize;
                 ref var isReload = ref weapon.isReload;
 
-                if (reloadTime <= 0)
+                if (reloadTime.Value <= 0)
                 {
-                    reloadTime = weapon.Config.ReloadTime;
+                    reloadTime.Value = weapon.Config.ReloadTime;
                     entity.Del<WeaponReloadEvent>();
                     isReload = false;
                 }
                 else
                 {
                     isReload = true;
-                    reloadTime -= Time.deltaTime;
-                    if (reloadTime <= 0)
+                    reloadTime.Value -= Time.deltaTime;
+                    if (reloadTime.Value <= 0)
                     {
-                        reloadTime = 0;
+                        reloadTime.Value = 0;
                         
-                        if (totalAmmo < weapon.Config.MagazineSize)
+                        if (totalAmmo.Value < weapon.Config.MagazineSize)
                         {
                             magazineSize = totalAmmo;
                         }                                                                                                     
-                        else magazineSize = weapon.Config.MagazineSize;
+                        else magazineSize.Value = weapon.Config.MagazineSize;
                     }
                 }
             }

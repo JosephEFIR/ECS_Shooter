@@ -13,7 +13,6 @@ namespace Project.Scripts.Player
         [Space(20)]
         
         [Header("Cameras")]
-        [SerializeField] private Camera camera;
         [SerializeField] private CinemachineCamera fpvCamera;
         [SerializeField] private CinemachineCamera tpvCamera;
         
@@ -34,7 +33,6 @@ namespace Project.Scripts.Player
         
         
         public PlayerConfig Config => config;
-        public Camera Camera => camera;
         public CinemachineCamera FPVCamera => fpvCamera;
         public CinemachineCamera TPVCamera => tpvCamera;
         public Rigidbody Rigidbody => rigidbody;
