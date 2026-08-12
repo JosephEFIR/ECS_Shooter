@@ -355,7 +355,7 @@ MonoBehaviour:
   TiltAxis:
     Value: 0
     Center: 0
-    Range: {x: -90, y: 90}
+    Range: {x: -45, y: 45}
     Wrap: 0
     Recentering:
       Enabled: 0
@@ -584,7 +584,7 @@ MonoBehaviour:
     m_ConstrainedRotationAxes:
       x: 1
       y: 1
-      z: 1
+      z: 0
     m_MaintainPositionOffset: 0
     m_MaintainRotationOffset: 0
 --- !u!1 &4016378889987686068
