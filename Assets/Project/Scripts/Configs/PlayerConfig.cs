@@ -21,11 +21,8 @@ namespace Project.Scripts.Configs
         [Header("Weapon")]
         [SerializeField] private WeaponView weapon;
 
-        [Header("Animation")]
-        [Range(0, 1f)] 
-        [SerializeField] private float handIKAmount = 1F;
-        [Range(0, 1f)] 
-        [SerializeField] private float elbowIKAmount = 1F;
+        [Header("Health")] 
+        [Range(1,200)] [SerializeField] private int health;
         
         [Header("Other")]
         [Range(0, 10)]
@@ -38,8 +35,7 @@ namespace Project.Scripts.Configs
         public LayerMask GroundLayer => groundLayer;
         public float GroundDistance => groundDistance;
         public WeaponView Weapon => weapon;
-        public float HandIKAmount => handIKAmount;
-        public float ElbowIKAmount => elbowIKAmount;
+        public int Health => health;
     }
 }
 

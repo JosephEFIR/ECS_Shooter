@@ -2,6 +2,7 @@
 using Project.Scripts.Animation;
 using Project.Scripts.Common;
 using Project.Scripts.Core.Common;
+using Project.Scripts.Core.Health;
 using Project.Scripts.Core.Player;
 using Project.Scripts.Tags;
 using Project.Scripts.Weapon;
@@ -45,8 +46,6 @@ namespace Project.Scripts.Move
                 //Animation
                 ref var animComponent = ref playerEntity.Get<PlayerAnimationComponent>();
                 animComponent.Animator = playerComponent.Animator;
-                animComponent.ElbowIKAmount = playerComponent.Config.ElbowIKAmount;
-                animComponent.HandIKAmount = playerComponent.Config.HandIKAmount;
                 
                 //Cameras
                 ref var cameraSwitchComponent = ref playerEntity.Get<CamerasComponent>();
@@ -54,8 +53,12 @@ namespace Project.Scripts.Move
                 cameraSwitchComponent.firstPersonViewCam = playerComponent.FPVCamera;
                 cameraSwitchComponent.thirdPersonViewCam = playerComponent.TPVCamera;
                 
+                //weapon
                 playerEntity.Get<WeaponInventoryComponent>();
                 playerEntity.Get<TakeWeaponEvent>();
+                
+                //health
+                playerEntity.Get<HealthComponent>();
 
                 playerEntity.Get<InitializedEvent>();
                 if(playerEntity.Has<InitComponent>()) playerEntity.Del<InitComponent>();

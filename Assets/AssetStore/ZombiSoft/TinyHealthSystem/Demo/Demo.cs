@@ -27,7 +27,7 @@ public class Demo : MonoBehaviour
     }
     public void Button5()
     {
-        HealthSystem.Instance.SetMaxHealth(10f); // Add 10 % to max health
+        HealthSystem.Instance.SetHealth(10f); // Add 10 % to max health
     }
     public void Button6()
     {

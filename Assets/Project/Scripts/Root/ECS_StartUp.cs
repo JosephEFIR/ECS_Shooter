@@ -1,11 +1,13 @@
 ﻿using Leopotam.Ecs;
 using Project.Scripts.Animation;
 using Project.Scripts.Configs.Spawn;
+using Project.Scripts.Core.Health.Systems;
 using Project.Scripts.Core.Level.Spawners.Systems;
 using Project.Scripts.Core.Player;
 using Project.Scripts.Factory;
 using Project.Scripts.Move;
 using Project.Scripts.Other;
+using Project.Scripts.UI.Health;
 using Project.Scripts.UI.Weapon;
 using Project.Scripts.Weapon;
 using Project.Scripts.Weapon.Bullet;
@@ -90,6 +92,7 @@ namespace Project.Scripts.Common
                 .Add(new CameraSwitcherSystem())
                 .Add(new CursorLockedSystem())
                 .Add(new MousePositionSystem())
+                .Add(new PlayerHealthInitSystem())
                 ;
         }
 
@@ -111,6 +114,7 @@ namespace Project.Scripts.Common
         {
             _systems
                 .Add(new TotalAmmoUIInitSystem())
+                .Add(new HealthUIInitSystem())
                 ;
         }
 

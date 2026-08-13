@@ -19,7 +19,7 @@ public class HealthSystem : MonoBehaviour
 	public Image currentHealthBar;
 	public Image currentHealthGlobe;
 	public Text healthText;
-	public float hitPoint = 100f;
+	public float hitPoint = 100;
 	public float maxHitPoint = 100f;
 
 	public Image currentManaBar;
@@ -127,9 +127,10 @@ public class HealthSystem : MonoBehaviour
 
 		UpdateGraphics();
 	}
-	public void SetMaxHealth(float max)
+	public void SetHealth(float max)
 	{
-		maxHitPoint += (int)(maxHitPoint * max / 100);
+		hitPoint = max;
+		maxHitPoint = max;
 
 		UpdateGraphics();
 	}
