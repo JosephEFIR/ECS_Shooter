@@ -31,9 +31,14 @@ namespace Project.Scripts.Weapon
 
         private void Reload(EcsEntity entity)
         {
-            if (Input.GetKey(KeyCode.R))
+            ref var weapon = ref entity.Get<WeaponComponent>();
+            ref var totalAmmo = ref weapon.TotalAmmo;
+            
+            if(totalAmmo.Value == 0) return;
+            
+            if (Input.GetKey(KeyCode.R) && !entity.Has<WeaponReloadComponent>())
             {
-                entity.Get<WeaponReloadEvent>();
+                entity.Get<WeaponReloadComponent>();
             }
         }
     }

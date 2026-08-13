@@ -1,11 +1,14 @@
 ﻿using Leopotam.Ecs;
 using Project.Scripts.Animation;
 using Project.Scripts.Configs.Spawn;
+using Project.Scripts.Core.Health.Systems;
 using Project.Scripts.Core.Level.Spawners.Systems;
 using Project.Scripts.Core.Player;
 using Project.Scripts.Factory;
 using Project.Scripts.Move;
 using Project.Scripts.Other;
+using Project.Scripts.UI.Health;
+using Project.Scripts.UI.Weapon;
 using Project.Scripts.Weapon;
 using Project.Scripts.Weapon.Bullet;
 using UnityEngine;
@@ -19,6 +22,7 @@ namespace Project.Scripts.Common
         [Inject] private EcsWorld _world;
         [Inject] private PlayerFactory _playerFactory;
         [Inject] private WeaponFactory _weaponFactory;
+        [Inject] private UiView _uiView;
         [Inject] private SpawnConfig _spawnConfig;
         
         private EcsSystems _systems;
@@ -40,7 +44,7 @@ namespace Project.Scripts.Common
             _systems?.Run();
         }
 
-        private void AddOneFrames() //TODO ADD ALL EVENTS BRUH HELL NA ARE U Junior?
+        private void AddOneFrames()
         {
             _systems
                 .OneFrame<JumpEvent>()
@@ -57,6 +61,7 @@ namespace Project.Scripts.Common
                 .Inject(_playerFactory)
                 .Inject(_weaponFactory)
                 .Inject(_spawnConfig)
+                .Inject(_uiView)
                 ;
         }
 
@@ -64,6 +69,7 @@ namespace Project.Scripts.Common
         {
             PlayerSystems();
             WeaponSystems();
+            UISystems();
         }
 
         private void PlayerSystems() // мб системы в другое место?
@@ -86,6 +92,7 @@ namespace Project.Scripts.Common
                 .Add(new CameraSwitcherSystem())
                 .Add(new CursorLockedSystem())
                 .Add(new MousePositionSystem())
+                .Add(new PlayerHealthInitSystem())
                 ;
         }
 
@@ -101,6 +108,14 @@ namespace Project.Scripts.Common
                 .Add(new SetIkAnimSystem())
                 ;
 
+        }
+
+        private void UISystems()
+        {
+            _systems
+                .Add(new TotalAmmoUIInitSystem())
+                .Add(new HealthUIInitSystem())
+                ;
         }
 
         private void OnDestroy()

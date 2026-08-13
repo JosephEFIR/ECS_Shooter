@@ -51,7 +51,7 @@ namespace Project.Scripts.Core.Level.Spawners.Systems
         {
             ref var playerComponent = ref playerEntity.Get<PlayerComponent>();
             playerComponent.Config = player.Config;
-            playerComponent.camera = player.Camera;
+            playerComponent.camera = Camera.main;
             playerComponent.FPVCamera = player.FPVCamera;
             playerComponent.TPVCamera = player.TPVCamera;
             playerComponent.Rigidbody = player.Rigidbody;

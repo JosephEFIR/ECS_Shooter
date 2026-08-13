@@ -19,10 +19,14 @@ namespace Project.Scripts.Weapon
                 ref var weaponComponent = ref _filter.Get1(i);
                 ref var config = ref weaponComponent.Config;
 
-                weaponComponent.TotalAmmo = config.TotalAmmo;
+                weaponComponent.TotalAmmo = new();
+                weaponComponent.MagazineSize = new();
+                weaponComponent.ReloadTime = new();
+                
+                weaponComponent.TotalAmmo.Value = config.TotalAmmo;
+                weaponComponent.MagazineSize.Value = config.MagazineSize;
+                weaponComponent.ReloadTime.Value = config.ReloadTime;
                 weaponComponent.FireRate = config.FireRate;
-                weaponComponent.MagazineSize = config.MagazineSize;
-                weaponComponent.ReloadTime = config.ReloadTime;
                 weaponComponent.active = false;
                 
                 BulletView bulletView = config.BulletView;

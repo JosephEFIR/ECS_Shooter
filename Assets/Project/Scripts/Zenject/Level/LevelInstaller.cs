@@ -1,5 +1,6 @@
 ﻿using Leopotam.Ecs;
 using Project.Scripts.Common;
+using Project.Scripts.UI.Weapon;
 using Zenject;
 
 namespace Project.Scripts.Zenject.Level
@@ -11,6 +12,7 @@ namespace Project.Scripts.Zenject.Level
             //ECS
             Container.Bind<EcsWorld>().FromNew().AsSingle().NonLazy();
             Container.Bind<ECS_StartUp>().FromComponentInHierarchy().AsSingle().NonLazy();
+            Container.Bind<UiView>().FromComponentInHierarchy().AsSingle().NonLazy();
         }
     }
 }

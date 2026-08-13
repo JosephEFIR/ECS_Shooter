@@ -1,4 +1,5 @@
 ﻿using Project.Scripts.Factory.Pool;
+using UniRx;
 using UnityEngine;
 
 namespace Project.Scripts.Weapon
@@ -16,9 +17,9 @@ namespace Project.Scripts.Weapon
         
         public bool CanFire;
         public float FireRate;                     
-        public int MagazineSize;
-        public int TotalAmmo;
-        public float ReloadTime;
+        public ReactiveProperty<int> MagazineSize;
+        public ReactiveProperty<int> TotalAmmo;
+        public ReactiveProperty<float> ReloadTime;
         
         public Transform LeftHandIKTarget;
         public Transform RightHandIKTarget;
