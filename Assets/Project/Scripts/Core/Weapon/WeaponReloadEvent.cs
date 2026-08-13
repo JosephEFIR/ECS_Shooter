@@ -1,6 +1,6 @@
 ﻿namespace Project.Scripts.Weapon
 {
-    internal struct WeaponReloadEvent
+    internal struct WeaponReloadComponent
     {
         
     }

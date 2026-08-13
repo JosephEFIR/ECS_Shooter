@@ -54,10 +54,10 @@ namespace Project.Scripts.Move
                 cameraSwitchComponent.firstPersonViewCam = playerComponent.FPVCamera;
                 cameraSwitchComponent.thirdPersonViewCam = playerComponent.TPVCamera;
                 
-                //weapon pizdec
                 playerEntity.Get<WeaponInventoryComponent>();
                 playerEntity.Get<TakeWeaponEvent>();
-                
+
+                playerEntity.Get<InitializedEvent>();
                 if(playerEntity.Has<InitComponent>()) playerEntity.Del<InitComponent>();
                 
                 Debug.Log("Player Initialized");

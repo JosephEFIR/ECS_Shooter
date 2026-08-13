@@ -22,13 +22,21 @@ namespace Project.Scripts.Weapon
                 ref var canFire = ref weapon.CanFire;
                 ref var isFire = ref weapon.isFire;
                 
-                if(entity.Has<WeaponReloadEvent>() | totalAmmo.Value <= 0) {return;}
-
+                if (entity.Has<WeaponReloadComponent>() || totalAmmo.Value <= 0) 
+                {
+                    return;
+                }
+                
                 if (magazineSize.Value <= 0)
                 {
-                    entity.Get<WeaponReloadEvent>();
+                    if (!entity.Has<WeaponReloadComponent>()) 
+                    {
+                        entity.Get<WeaponReloadComponent>();
+                    }
                     isFire = false;
+                    return; 
                 }
+
                 if (firerate > 0)
                 {
                     firerate -= Time.deltaTime * 600f;
@@ -45,17 +53,16 @@ namespace Project.Scripts.Weapon
                     firerate = weapon.Config.FireRate;
                     Shoot(weapon);
                     isFire = true;
-                    
+    
                     magazineSize.Value--;
                     totalAmmo.Value--;
-                    firerate = weapon.Config.FireRate;
                 }
-                Debug.Log(totalAmmo);
             }
         }
 
         private void Shoot(WeaponComponent weapon)
         {
+            // ... ваш код выстрела без изменений ...
             BulletView bulletView = weapon.BulletPool.GetObject();
             EcsEntity bulletEntity = _world.NewEntity();
             ref var bullet = ref bulletEntity.Get<BulletComponent>();
@@ -63,16 +70,13 @@ namespace Project.Scripts.Weapon
             bulletView.Entity = bulletEntity;
             
             bulletView.transform.parent = null;
-    
             bulletView.transform.position = weapon.BulletSpawnPoint.position;
             bulletView.transform.rotation = weapon.BulletSpawnPoint.rotation;
     
             Rigidbody rb = bulletView.GetComponent<Rigidbody>();
-            
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
-            
-            rb.AddForce(weapon.BulletSpawnPoint.forward * 10F, ForceMode.Impulse); //TODO FOR DEBUG
+            rb.AddForce(weapon.BulletSpawnPoint.forward * 10F, ForceMode.Impulse);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Project.Scripts.Animation
                 if(!currentWeapon.Has<WeaponComponent>()) return;
                 
                 animComponent.Animator.SetBool(EAnimParameter.IsHasWeapon.ToString(), currentWeapon.Has<WeaponComponent>());
-                animComponent.Animator.SetBool(EAnimParameter.Reload.ToString(), currentWeapon.Has<WeaponReloadEvent>());
+                animComponent.Animator.SetBool(EAnimParameter.Reload.ToString(), currentWeapon.Has<WeaponReloadComponent>());
             }    
         }
     }
