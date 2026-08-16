@@ -72,7 +72,7 @@ namespace Project.Scripts.Common
             UISystems();
         }
 
-        private void PlayerSystems() // мб системы в другое место?
+        private void PlayerSystems()
         {
             _systems
                 .Add(new PlayerSpawnSystem())
