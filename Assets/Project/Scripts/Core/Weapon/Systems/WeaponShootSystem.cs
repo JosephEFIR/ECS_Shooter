@@ -62,7 +62,6 @@ namespace Project.Scripts.Weapon
 
         private void Shoot(WeaponComponent weapon)
         {
-            // ... ваш код выстрела без изменений ...
             BulletView bulletView = weapon.BulletPool.GetObject();
             EcsEntity bulletEntity = _world.NewEntity();
             ref var bullet = ref bulletEntity.Get<BulletComponent>();
@@ -76,7 +75,7 @@ namespace Project.Scripts.Weapon
             Rigidbody rb = bulletView.GetComponent<Rigidbody>();
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
-            rb.AddForce(weapon.BulletSpawnPoint.forward * 10F, ForceMode.Impulse);
+            rb.AddForce(weapon.BulletSpawnPoint.forward * 50F, ForceMode.Impulse);
         }
     }
 }

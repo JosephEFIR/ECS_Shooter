@@ -17,10 +17,10 @@ namespace Project.Scripts.Weapon.Bullet
             _rigidbody = GetComponent<Rigidbody>();
         }
            
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(Collision collision)
         {
             if (!Entity.IsAlive()) return;
-            if(other.CompareTag("Bullet")) return;
+            if(collision.gameObject.CompareTag("Bullet")) return;
             
             ReturnBullet();
         }
