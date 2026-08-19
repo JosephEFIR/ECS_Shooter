@@ -9,6 +9,22 @@ namespace Project.Scripts.Level.Spawners
     {
         [Inject] private EcsWorld _world;
         
+        private void Awake()
+        {
+            if (_world == null)
+            {
+                var sceneContext = FindObjectOfType<SceneContext>();
+                if (sceneContext != null)
+                {
+                    sceneContext.Container.InjectGameObject(gameObject);
+                }
+                else
+                {
+                    Debug.LogError("SceneContext not found");
+                }
+            }
+        }
+
         private void Start()
         {
             EcsEntity playerEntity = _world.NewEntity();
