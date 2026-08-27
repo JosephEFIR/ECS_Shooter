@@ -1,6 +1,10 @@
 ﻿using Leopotam.Ecs;
 using Project.Scripts.Animation;
+using Project.Scripts.Configs;
 using Project.Scripts.Configs.Spawn;
+using Project.Scripts.Core.Common;
+using Project.Scripts.Core.Enemy.Turret;
+using Project.Scripts.Core.Health;
 using Project.Scripts.Core.Health.Systems;
 using Project.Scripts.Core.Level.Spawners.Systems;
 using Project.Scripts.Core.Player;
@@ -24,6 +28,7 @@ namespace Project.Scripts.Common
         [Inject] private WeaponFactory _weaponFactory;
         [Inject] private UiView _uiView;
         [Inject] private SpawnConfig _spawnConfig;
+        [Inject] private SoundEffectConfig _soundEffectConfig;
         
         private EcsSystems _systems;
 
@@ -49,9 +54,11 @@ namespace Project.Scripts.Common
             _systems
                 .OneFrame<JumpEvent>()
                 .OneFrame<CameraSwitchEvent>()
-                .OneFrame<WeaponShootEvent>()
+                .OneFrame<WeaponInputShootEvent>()
                 .OneFrame<BulletTriggerEvent>()
                 .OneFrame<InitializedEvent>()
+                .OneFrame<DeathEvent>()
+                .OneFrame<ShootEvent>()
                 ;
         }
 
@@ -62,14 +69,24 @@ namespace Project.Scripts.Common
                 .Inject(_weaponFactory)
                 .Inject(_spawnConfig)
                 .Inject(_uiView)
+                .Inject(_soundEffectConfig)
                 ;
         }
 
         private void AddSystems() 
         {
+            RootSystem();
             PlayerSystems();
             WeaponSystems();
+            EnemySystems();
             UISystems();
+        }
+
+        private void RootSystem()
+        {
+            _systems
+                .Add(new HealthCollisionSystem())
+                ;
         }
 
         private void PlayerSystems()
@@ -106,10 +123,25 @@ namespace Project.Scripts.Common
                 .Add(new WeaponReloadSystem())
                 .Add(new PlayerWeaponAnimSystem())
                 .Add(new SetIkAnimSystem())
+                .Add(new WeaponSoundSystem())
                 ;
 
         }
 
+        private void EnemySystems()
+        {
+            _systems
+                .Add(new TurretInitSystem())
+                .Add(new TurretFoundTargetSystem())
+                .Add(new TurretAimSystem())
+                .Add(new TurretShootSystem())
+                .Add(new TurretReactToDamageSystem())
+                .Add(new DeathSendEventSystem())
+                .Add(new TurretDeathSystem())
+                .Add(new TurretSoundSystem())
+                ;
+        }
+        
         private void UISystems()
         {
             _systems

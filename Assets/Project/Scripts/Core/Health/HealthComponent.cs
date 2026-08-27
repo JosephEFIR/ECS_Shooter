@@ -1,4 +1,6 @@
-﻿using UniRx;
+﻿using Project.Scripts.UI.Health;
+using Project.Scripts.UI.Weapon.Enemy;
+using UniRx;
 
 namespace Project.Scripts.Core.Health
 {
@@ -6,5 +8,6 @@ namespace Project.Scripts.Core.Health
     {
         public ReactiveProperty<float> CurrentHealth;
         public float MaxHealth;
+        public HealthUIView HealthUIView;
     }
 }

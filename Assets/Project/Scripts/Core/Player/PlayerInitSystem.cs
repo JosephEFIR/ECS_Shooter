@@ -20,6 +20,7 @@ namespace Project.Scripts.Move
                 EcsEntity playerEntity = _playerFilter.GetEntity(entity);
                 
                 ref var playerComponent = ref playerEntity.Get<PlayerComponent>();
+                ref var playerView = ref playerComponent.View;
                 
                 //Move
                 ref var movableComponent = ref playerEntity.Get<PlayerMovableComponent>();
@@ -59,6 +60,13 @@ namespace Project.Scripts.Move
                 
                 //health
                 playerEntity.Get<HealthComponent>();
+                
+                //Hitbox
+                ref var hitbox = ref playerEntity.Get<HitBoxComponent>();
+                hitbox.HitBoxObserver = playerView.HitBoxObserver;
+                hitbox.HitBoxObserver.Entity = playerEntity;
+                
+                
 
                 playerEntity.Get<InitializedEvent>();
                 if(playerEntity.Has<InitComponent>()) playerEntity.Del<InitComponent>();

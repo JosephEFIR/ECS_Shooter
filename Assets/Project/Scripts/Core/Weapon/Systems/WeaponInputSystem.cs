@@ -21,11 +21,11 @@ namespace Project.Scripts.Weapon
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
-                entity.Get<WeaponShootEvent>();
+                entity.Get<WeaponInputShootEvent>();
             }
             else if (Input.GetKeyUp(KeyCode.Mouse0))
             {
-                entity.Del<WeaponShootEvent>();
+                entity.Del<WeaponInputShootEvent>();
             }
         }
 

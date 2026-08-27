@@ -2,11 +2,10 @@
 using Project.Scripts.Level.Spawners;
 using Project.Scripts.Tags;
 using Project.Scripts.Weapon;
-using UnityEngine;
 
 namespace Project.Scripts.Core.Player
 {
-    public class PlayerInventorySystem : IEcsRunSystem //REFACTORE THIS
+    public class PlayerInventorySystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
         private readonly EcsFilter<PlayerComponent, WeaponInventoryComponent, TakeWeaponEvent> _filter = null;
@@ -23,9 +22,12 @@ namespace Project.Scripts.Core.Player
                 ref var firstWeapon = ref weaponInventory.CurrentWeapon;
                 EcsEntity weaponEntity = _world.NewEntity();
                 ref var weapon = ref weaponEntity.Get<WeaponComponent>();
+                
+                weapon.Owner = player.Position;
+                
                 firstWeapon = weaponEntity;
                 ref var weaponConfig = ref weapon.Config;
-                weaponConfig =  config.Weapon.Config;
+                weaponConfig = config.Weapon.Config;
                 
                 ref var spawnComponent = ref weaponEntity.Get<SpawnComponent>();
                 spawnComponent.Position = player.WeaponHolder.transform;

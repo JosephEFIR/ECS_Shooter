@@ -1,5 +1,4 @@
 ﻿using Leopotam.Ecs;
-using Project.Scripts.Configs.Spawn;
 using Project.Scripts.Core.Common;
 using Project.Scripts.Factory.Pool;
 using Project.Scripts.Weapon.Bullet;

@@ -1,5 +1,7 @@
 ﻿using Project.Scripts.Animation;
 using Project.Scripts.Configs;
+using Project.Scripts.Core.Common;
+using Project.Scripts.Core.Player;
 using Project.Scripts.Player.Triggers;
 using Project.Scripts.Weapon;
 using Unity.Cinemachine;
@@ -23,6 +25,7 @@ namespace Project.Scripts.Player
         [SerializeField] private Transform position;
         
         [Header("Colliders & Hitboxes")]
+        [SerializeField] private HitBoxObserver hitBoxObserver;
         [SerializeField] private CapsuleCollider collider;
         [SerializeField] private CrouchChecker crouchChecker;
         [SerializeField] private GroundChecker groundChecker;
@@ -38,6 +41,7 @@ namespace Project.Scripts.Player
         public Rigidbody Rigidbody => rigidbody;
         public Animator Animator => animator;
         public Transform Position => position;
+        public HitBoxObserver HitBoxObserver => hitBoxObserver;
         public CapsuleCollider Collider => collider;
         public CrouchChecker CrouchChecker => crouchChecker;
         public GroundChecker GroundChecker => groundChecker;

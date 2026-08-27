@@ -40,7 +40,6 @@ namespace Project.Scripts.Factory.Pool
             }
             
             obj.gameObject.SetActive(true);
-            // Отцепляем от родителя, чтобы пуля летела независимо
             obj.transform.parent = null;
             return obj;
         }
@@ -50,7 +49,6 @@ namespace Project.Scripts.Factory.Pool
             if (obj == null) return;
             
             obj.gameObject.SetActive(false);
-            // Возвращаем под родительский объект пула
             if (_parent != null)
             {
                 obj.transform.parent = _parent;

@@ -89,3 +89,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnConfig: {fileID: 11400000, guid: f56886465a71a7f4eb67a2606d474948, type: 2}
+  soundConfig: {fileID: 11400000, guid: 8e45784982ca378408b9ccc93cc5a067, type: 2}

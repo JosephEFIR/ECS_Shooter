@@ -20,8 +20,18 @@ namespace Project.Scripts.Weapon.Bullet
         private void OnCollisionEnter(Collision collision)
         {
             if (!Entity.IsAlive()) return;
-            if(collision.gameObject.CompareTag("Bullet")) return;
+            if (collision.gameObject.CompareTag("Bullet")) return;
             
+            ref var bulletComp = ref Entity.Get<BulletComponent>();
+            if (bulletComp.Owner != null)
+            {
+                if (collision.transform == bulletComp.Owner || 
+                    collision.transform.IsChildOf(bulletComp.Owner))
+                {
+                    return;
+                }
+            }
+
             ReturnBullet();
         }
 

@@ -1,11 +1,13 @@
 ﻿using Leopotam.Ecs;
 using Project.Scripts.Tags;
+using Project.Scripts.UI.Weapon;
 using Project.Scripts.Weapon;
 
 namespace Project.Scripts.Core.Health.Systems
 {
     public class PlayerHealthInitSystem : IEcsRunSystem
     {
+        private readonly UiView _uiView = null;
         private readonly EcsFilter<PlayerComponent, InitializedEvent> _filter = null;
         
         public void Run()
@@ -23,6 +25,7 @@ namespace Project.Scripts.Core.Health.Systems
                 healthComponent.MaxHealth = playerComponent.Config.Health;
                 healthComponent.CurrentHealth = new();
                 healthComponent.CurrentHealth.Value = healthComponent.MaxHealth;
+                healthComponent.HealthUIView = _uiView.HealthUIView;
             }
         }
     }

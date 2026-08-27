@@ -39,8 +39,11 @@ namespace Project.Scripts.Core.Level.Spawners.Systems
             ref var weaponComponent = ref weaponEntity.Get<WeaponComponent>();
             weaponComponent.Config = weaponView.Config;
             weaponComponent.BulletSpawnPoint = weaponView.BulletSpawnPoint;
+            weaponComponent.Audio = weaponView.Audio;
             weaponComponent.LeftHandIKTarget = weaponView.LeftHandIKTarget;
             weaponComponent.RightHandIKTarget = weaponView.RightHandIKTarget;
+            weaponComponent.RightHintIKTarget = weaponView.RightHintIKTarget;
+            weaponComponent.LeftHintIKTarget = weaponView.LeftHintIKTarget;
         }
     }
 }

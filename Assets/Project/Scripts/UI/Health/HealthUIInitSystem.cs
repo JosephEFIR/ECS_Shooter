@@ -1,7 +1,5 @@
 ﻿using Leopotam.Ecs;
 using Project.Scripts.Core.Health;
-using Project.Scripts.Tags;
-using Project.Scripts.UI.Weapon;
 using Project.Scripts.Weapon;
 using UniRx;
 
@@ -9,8 +7,7 @@ namespace Project.Scripts.UI.Health
 {
     public class HealthUIInitSystem : IEcsRunSystem, IEcsDestroySystem
     {
-	    private readonly UiView _uiView = null;
-		private readonly EcsFilter<PlayerComponent, HealthComponent, InitializedEvent> _filter = null;
+		private readonly EcsFilter<HealthComponent, InitializedEvent> _filter = null;
 		
 		private readonly CompositeDisposable _disposable = new();
 
@@ -18,13 +15,14 @@ namespace Project.Scripts.UI.Health
 		{
 			foreach (var i in _filter)
 			{
-				ref var healthComponent = ref _filter.Get2(i);
+				ref var healthComponent = ref _filter.Get1(i);
 				var currentHealth = healthComponent.CurrentHealth;
+				var uiView = healthComponent.HealthUIView;
 				
-				_uiView.HealthUIView.TinyHealthSystem.SetHealth(healthComponent.MaxHealth);
+				uiView.TinyHealthSystem.SetHealth(healthComponent.MaxHealth);
 				currentHealth.Pairwise().Subscribe(pair =>
 				{
-					var healthSystem = _uiView.HealthUIView.TinyHealthSystem;
+					var healthSystem = uiView.TinyHealthSystem;
 					float previous = pair.Previous;
 					float current = pair.Current;
 

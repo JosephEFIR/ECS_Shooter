@@ -9,12 +9,15 @@ namespace Project.Scripts.Animation
         [SerializeField] private RigBuilder rigBuilder;
         [SerializeField] private TwoBoneIKConstraint leftHandConstraint;
         [SerializeField] private TwoBoneIKConstraint rightHandConstraint;
+        
         public Rig Rig => rig;
 
-        public void SetIKTargets(Transform leftHand, Transform rightHand)
+        public void SetIKTargets(Transform leftHand, Transform rightHand, Transform leftHint, Transform rightHint)
         {
             leftHandConstraint.data.target = leftHand;
             rightHandConstraint.data.target = rightHand;
+            rightHandConstraint.data.hint = rightHint;
+            leftHandConstraint.data.hint = leftHint;
             rigBuilder.Build();
         }
     }

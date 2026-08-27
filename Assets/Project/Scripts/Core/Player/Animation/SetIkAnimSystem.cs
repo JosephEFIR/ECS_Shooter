@@ -21,10 +21,12 @@ namespace Project.Scripts.Animation
 
                 ref var leftHand = ref weapon.LeftHandIKTarget;
                 ref var rightHand = ref weapon.RightHandIKTarget;
+                ref var rightHint = ref weapon.RightHintIKTarget;
+                ref var leftHint = ref weapon.LeftHintIKTarget;
                 
                 if (weaponEntity.Has<InitializedEvent>())
                 {
-                    playIK.SetIKTargets(leftHand, rightHand);
+                    playIK.SetIKTargets(leftHand, rightHand, leftHint, rightHint);
                 }
             }
         }

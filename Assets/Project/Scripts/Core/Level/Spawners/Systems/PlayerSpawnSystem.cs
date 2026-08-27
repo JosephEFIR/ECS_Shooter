@@ -50,6 +50,7 @@ namespace Project.Scripts.Core.Level.Spawners.Systems
         private void PlayerComponentInit(EcsEntity playerEntity, PlayerView player)//TODO Какаято херня
         {
             ref var playerComponent = ref playerEntity.Get<PlayerComponent>();
+            playerComponent.View = player; //Заготовочка на что то адекватное
             playerComponent.Config = player.Config;
             playerComponent.camera = Camera.main;
             playerComponent.FPVCamera = player.FPVCamera;
