@@ -7,17 +7,17 @@ namespace Project.Scripts.Animation
 {
     public class SetIkAnimSystem : IEcsRunSystem
     {
-        private readonly EcsFilter <PlayerComponent, WeaponInventoryComponent> _filter = null;
+        private readonly EcsFilter <AnimationComponent, WeaponInventoryComponent> _filter = null;
         
         public void Run()
         {
             foreach (var i in _filter)
             {
-                ref var player = ref _filter.Get1(i);
+                ref var animationComp = ref _filter.Get1(i);
                 ref var weaponInventory = ref _filter.Get2(i);
                 ref var weaponEntity = ref weaponInventory.CurrentWeapon;
                 ref var weapon = ref weaponInventory.CurrentWeapon.Get<WeaponComponent>();
-                ref var playIK = ref player.AnimIK;
+                ref var animIK = ref animationComp.AnimIK;
 
                 ref var leftHand = ref weapon.LeftHandIKTarget;
                 ref var rightHand = ref weapon.RightHandIKTarget;
@@ -26,7 +26,7 @@ namespace Project.Scripts.Animation
                 
                 if (weaponEntity.Has<InitializedEvent>())
                 {
-                    playIK.SetIKTargets(leftHand, rightHand, leftHint, rightHint);
+                    animIK.SetIKTargets(leftHand, rightHand, leftHint, rightHint);
                 }
             }
         }

@@ -8,7 +8,7 @@ namespace Project.Scripts.Animation
 {
     sealed class PlayerAnimationSystem : IEcsRunSystem //TODO REFACTORE + REF
     {
-        private readonly EcsFilter<PlayerComponent,PlayerMovableComponent, PlayerAnimationComponent> _playerAnimationFilter = null;
+        private readonly EcsFilter<PlayerComponent,PlayerMovableComponent, AnimationComponent> _playerAnimationFilter = null;
         
         //CONFIG?
         private float _velocityX;

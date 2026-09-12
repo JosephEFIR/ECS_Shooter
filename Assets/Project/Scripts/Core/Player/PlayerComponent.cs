@@ -1,6 +1,5 @@
 ﻿using Project.Scripts.Animation;
 using Project.Scripts.Configs;
-using Project.Scripts.Core.Player;
 using Project.Scripts.Player;
 using Project.Scripts.Player.Triggers;
 using Project.Scripts.Weapon;
@@ -9,7 +8,7 @@ using UnityEngine;
 
 namespace Project.Scripts.Tags
 {
-    internal struct PlayerComponent
+    internal struct PlayerComponent 
     {
         public PlayerView View;
         public PlayerConfig Config;

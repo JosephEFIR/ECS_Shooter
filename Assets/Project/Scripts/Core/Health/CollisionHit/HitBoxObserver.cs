@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Project.Scripts.Core.Common
 {
-    //[RequireComponent(typeof(Collider))]
     public class HitBoxObserver : MonoBehaviour
     {
         public EcsEntity Entity;

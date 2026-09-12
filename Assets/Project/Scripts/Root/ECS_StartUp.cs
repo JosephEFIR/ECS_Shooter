@@ -3,6 +3,7 @@ using Project.Scripts.Animation;
 using Project.Scripts.Configs;
 using Project.Scripts.Configs.Spawn;
 using Project.Scripts.Core.Common;
+using Project.Scripts.Core.Enemy.AI.Systems;
 using Project.Scripts.Core.Enemy.Turret;
 using Project.Scripts.Core.Health;
 using Project.Scripts.Core.Health.Systems;
@@ -26,6 +27,7 @@ namespace Project.Scripts.Common
         [Inject] private EcsWorld _world;
         [Inject] private PlayerFactory _playerFactory;
         [Inject] private WeaponFactory _weaponFactory;
+        [Inject] private EnemyFactory _enemyFactory;
         [Inject] private UiView _uiView;
         [Inject] private SpawnConfig _spawnConfig;
         [Inject] private SoundEffectConfig _soundEffectConfig;
@@ -39,6 +41,7 @@ namespace Project.Scripts.Common
             AddInjections();
             AddOneFrames();
             AddSystems();
+            
             
             _systems.Init();
             Debug.Log("Systems initialized");
@@ -67,6 +70,7 @@ namespace Project.Scripts.Common
             _systems
                 .Inject(_playerFactory)
                 .Inject(_weaponFactory)
+                .Inject(_enemyFactory)
                 .Inject(_spawnConfig)
                 .Inject(_uiView)
                 .Inject(_soundEffectConfig)
@@ -108,7 +112,7 @@ namespace Project.Scripts.Common
                 .Add(new PlayerAnimationSystem())
                 .Add(new CameraSwitcherSystem())
                 .Add(new CursorLockedSystem())
-                .Add(new MousePositionSystem())
+                .Add(new PlayerAimPositionSystem())
                 .Add(new PlayerHealthInitSystem())
                 ;
         }
@@ -125,14 +129,20 @@ namespace Project.Scripts.Common
                 .Add(new SetIkAnimSystem())
                 .Add(new WeaponSoundSystem())
                 ;
-
         }
 
         private void EnemySystems()
         {
             _systems
+                .Add(new EnemySpawnSystem())
+                .Add(new EnemyUnitInitSystem())
                 .Add(new TurretInitSystem())
-                .Add(new TurretFoundTargetSystem())
+                .Add(new EnemyAnimationSystem())
+                .Add(new EnemyFoundSystem())        
+                .Add(new AiPatrolSystem())
+                .Add(new TurretPatrolSystem())
+        
+                .Add(new EnemyInventorySystem())
                 .Add(new TurretAimSystem())
                 .Add(new TurretShootSystem())
                 .Add(new TurretReactToDamageSystem())

@@ -668,7 +668,7 @@ MonoBehaviour:
   tpvCamera: {fileID: 1388331414219724441}
   rigidbody: {fileID: 3455816908817942393}
   animator: {fileID: 5625696685047752719}
-  animIK: {fileID: 6462918959306006416}
+  animIK: {fileID: 8763894716729487527}
   position: {fileID: 7277346610200108844}
   hitBoxObserver: {fileID: 1278718929338385621}
   collider: {fileID: 6401576376216801876}
@@ -3559,7 +3559,7 @@ PrefabInstance:
       addedObject: {fileID: 3286962225366011972}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f7d1fc450ec08f54ab8b31aeead794c3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6462918959306006416}
+      addedObject: {fileID: 8763894716729487527}
   m_SourcePrefab: {fileID: 100100000, guid: f7d1fc450ec08f54ab8b31aeead794c3, type: 3}
 --- !u!4 &14286685059937001 stripped
 Transform:
@@ -3824,7 +3824,7 @@ MonoBehaviour:
   - {fileID: 1201964622348329049}
   - {fileID: 3228942181483897104}
   - {fileID: 4782340111085669328}
---- !u!114 &6462918959306006416
+--- !u!114 &8763894716729487527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

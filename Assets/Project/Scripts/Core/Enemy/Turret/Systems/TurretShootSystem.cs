@@ -1,4 +1,5 @@
 ﻿using Leopotam.Ecs;
+using Project.Scripts.Core.Enemy.AI;
 using Project.Scripts.Weapon;
 using Project.Scripts.Weapon.Bullet;
 using UnityEngine;
@@ -8,19 +9,21 @@ namespace Project.Scripts.Core.Enemy.Turret
     public class TurretShootSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
-        private readonly EcsFilter<TurretComponent> _filter = null;
+        private readonly EcsFilter<EnemyComponent,TurretComponent> _filter = null;
 
         public void Run()
         {
             foreach (var i in _filter)
             {
                 ref var entity = ref _filter.GetEntity(i);
-                ref var turretComp = ref _filter.Get1(i);
-                ref var config = ref turretComp.Config;
-                ref var target = ref turretComp.Target;
-                ref var bulletPool = ref turretComp.BulletPool;
-                ref var canSeePlayer = ref turretComp.CanSeePlayer;
-                ref var nextFireTime = ref turretComp.NextFireTime;
+                ref var enemyComp = ref _filter.Get1(i);
+                ref var turretComp = ref _filter.Get2(i);
+                
+                ref var config = ref enemyComp.UnitConfig;
+                ref var target = ref enemyComp.Target;
+                ref var bulletPool = ref enemyComp.BulletPool;
+                ref var canSeePlayer = ref enemyComp.CanSeePlayer;
+                ref var nextFireTime = ref enemyComp.NextAttackTime;
                 ref var bulletSpawnPoint = ref turretComp.BulletSpawnPoint;
 
                 if (!canSeePlayer || target == null) continue;
@@ -33,7 +36,7 @@ namespace Project.Scripts.Core.Enemy.Turret
                 EcsEntity bulletEntity = _world.NewEntity();
                 ref var bullet = ref bulletEntity.Get<BulletComponent>();
                 bullet.BulletPool = bulletPool;
-                bullet.Owner = turretComp.TurretTransform;
+                bullet.Owner = enemyComp.Position;
                 bulletView.Entity = bulletEntity;
 
                 bulletView.transform.position = bulletSpawnPoint.position;
@@ -42,7 +45,7 @@ namespace Project.Scripts.Core.Enemy.Turret
                 Collider bulletCollider = bulletView.GetComponent<Collider>();
                 if (bulletCollider != null)
                 {
-                    Collider[] turretColliders = turretComp.TurretView.GetComponentsInChildren<Collider>();
+                    Collider[] turretColliders = enemyComp.View.GetComponentsInChildren<Collider>();
                     foreach (var turretCol in turretColliders)
                     {
                         Physics.IgnoreCollision(bulletCollider, turretCol, true);

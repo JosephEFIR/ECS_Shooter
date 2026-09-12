@@ -406,12 +406,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ca8bc2876c4a2baa6d2fcbfc549d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  config: {fileID: 11400000, guid: b3a614e1033789f43858979e7a198098, type: 2}
   audioSource: {fileID: 2064652774290379092}
-  turretConfig: {fileID: 11400000, guid: b3a614e1033789f43858979e7a198098, type: 2}
-  bulletView: {fileID: 6405578897167248697, guid: 3a140c746d966b24eba607d8a201e771, type: 3}
+  hitBoxObserver: {fileID: 9076700956684063396}
   bulletSpawnPoint: {fileID: 5259889143209141978}
   healthUIView: {fileID: 8453225679450156110}
-  hitBoxObserver: {fileID: 9076700956684063396}
+  bulletView: {fileID: 6405578897167248697, guid: 3a140c746d966b24eba607d8a201e771, type: 3}
   turretHad: {fileID: 5251410745034383098}
 --- !u!82 &2064652774290379092
 AudioSource:

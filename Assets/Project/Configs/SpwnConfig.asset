@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: SpwnConfig
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 7844680045068738569, guid: 1665f7ee4459a9749b879a19ebed02c1, type: 3}
+  enemyPrefab: {fileID: 7232944202245047532, guid: 329883ff66570004ab50e8c35fd1c703, type: 3}
   weaponPrefab: {fileID: 7500686552293364570, guid: 08de4e52f6e0d0c4c97f1362ded361c6, type: 3}
   bulletPrefab: {fileID: 6405578897167248697, guid: 3a140c746d966b24eba607d8a201e771, type: 3}

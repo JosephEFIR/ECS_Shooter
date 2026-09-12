@@ -45,8 +45,9 @@ namespace Project.Scripts.Move
                 mouseComponent.Camera = playerComponent.camera;
                 
                 //Animation
-                ref var animComponent = ref playerEntity.Get<PlayerAnimationComponent>();
+                ref var animComponent = ref playerEntity.Get<AnimationComponent>();
                 animComponent.Animator = playerComponent.Animator;
+                animComponent.AnimIK = playerComponent.AnimIK;
                 
                 //Cameras
                 ref var cameraSwitchComponent = ref playerEntity.Get<CamerasComponent>();
@@ -66,8 +67,6 @@ namespace Project.Scripts.Move
                 hitbox.HitBoxObserver = playerView.HitBoxObserver;
                 hitbox.HitBoxObserver.Entity = playerEntity;
                 
-                
-
                 playerEntity.Get<InitializedEvent>();
                 if(playerEntity.Has<InitComponent>()) playerEntity.Del<InitComponent>();
                 

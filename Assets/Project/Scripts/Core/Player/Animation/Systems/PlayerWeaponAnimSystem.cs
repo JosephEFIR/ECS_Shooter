@@ -7,7 +7,7 @@ namespace Project.Scripts.Animation
 {
     public class PlayerWeaponAnimSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerAnimationComponent, WeaponInventoryComponent> _filter = null;
+        private readonly EcsFilter<AnimationComponent, WeaponInventoryComponent> _filter = null;
         
         public void Run()
         {

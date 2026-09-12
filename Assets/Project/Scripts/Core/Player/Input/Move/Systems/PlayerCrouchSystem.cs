@@ -6,7 +6,7 @@ namespace Project.Scripts.Move
 {
     public class PlayerCrouchSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerMovableComponent, PlayerAnimationComponent> _filter = null;
+        private readonly EcsFilter<PlayerMovableComponent, AnimationComponent> _filter = null;
         
         private readonly Vector3 _crouchScale = new (1, 0.5f, 1); //забей так надо
         private readonly Vector3 _defaultScale = new (1, 1f, 1);

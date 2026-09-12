@@ -1,18 +1,19 @@
 ﻿using Leopotam.Ecs;
+using Project.Scripts.Core.Player;
 using UnityEngine;
 
 namespace Project.Scripts.Weapon
 {
     public class WeaponReloadSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<WeaponComponent, WeaponReloadComponent> _filter = null;
+        private readonly EcsFilter<WeaponInventoryComponent, WeaponReloadComponent> _filter = null;
 
         public void Run()
         {
             foreach (var i in _filter)
             {
                 ref var entity = ref _filter.GetEntity(i);
-                ref var weapon = ref _filter.Get1(i);
+                ref var weapon = ref _filter.Get1(i).CurrentWeapon.Get<WeaponComponent>();
                 ref var reloadTime = ref weapon.ReloadTime;
                 ref var totalAmmo = ref weapon.TotalAmmo;
                 ref var magazineSize = ref weapon.MagazineSize;

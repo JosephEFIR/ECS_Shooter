@@ -1,4 +1,5 @@
 ﻿using Leopotam.Ecs;
+using Project.Scripts.Core.Player;
 using Project.Scripts.Weapon.Bullet;
 using UnityEngine;
 
@@ -6,14 +7,14 @@ namespace Project.Scripts.Weapon
 {
     public class WeaponShootSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<WeaponComponent, WeaponInputShootEvent> _filter = null;
+        private readonly EcsFilter<WeaponInventoryComponent, WeaponInputShootEvent> _filter = null;
         private readonly EcsWorld _world = null;
 
         public void Run()
         {
             foreach (var i in _filter)
             {
-                ref var weapon = ref _filter.Get1(i);
+                ref var weapon = ref _filter.Get1(i).CurrentWeapon.Get<WeaponComponent>();
                 ref var entity = ref _filter.GetEntity(i);
 
                 ref var totalAmmo = ref weapon.TotalAmmo;

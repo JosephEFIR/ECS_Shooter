@@ -9,6 +9,7 @@ namespace Project.Scripts.Zenject.Project
         {
             Container.Bind<PlayerFactory>().AsSingle().NonLazy();
             Container.Bind<WeaponFactory>().AsSingle().NonLazy();
+            Container.Bind<EnemyFactory>().AsSingle().NonLazy();
         }
     }
 }

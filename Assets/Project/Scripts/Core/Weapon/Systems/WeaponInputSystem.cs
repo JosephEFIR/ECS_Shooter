@@ -1,11 +1,13 @@
 ﻿using Leopotam.Ecs;
+using Project.Scripts.Core.Player;
+using Project.Scripts.Tags;
 using UnityEngine;
 
 namespace Project.Scripts.Weapon
 {
     public class WeaponInputSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<WeaponComponent> _filter = null;
+        private readonly EcsFilter<PlayerComponent,WeaponInventoryComponent> _filter = null;
 
         public void Run()
         {
@@ -31,7 +33,7 @@ namespace Project.Scripts.Weapon
 
         private void Reload(EcsEntity entity)
         {
-            ref var weapon = ref entity.Get<WeaponComponent>();
+            ref var weapon = ref entity.Get<WeaponInventoryComponent>().CurrentWeapon.Get<WeaponComponent>();
             ref var totalAmmo = ref weapon.TotalAmmo;
             
             if(totalAmmo.Value == 0) return;

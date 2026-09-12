@@ -12,20 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f869316eea664bb5a47f0c277b0d1e89, type: 3}
   m_Name: TurretConfig
   m_EditorClassIdentifier: 
+  enemyType: 1
+  moveSpeed: 3.5
+  angularSpeed: 120
+  acceleration: 8
+  health: 30
   viewRadius: 15
   viewAngle: 90
   verticalAngle: 90
-  rotationSpeed: 300
   targetMask:
     serializedVersion: 2
     m_Bits: 128
   obstacleMask:
     serializedVersion: 2
     m_Bits: 512
-  patrolSpeed: 30
-  patrolRange: 90
+  rotationSpeed: 300
+  aimThreshold: 5
+  attackSpeed: 1
+  meleeRange: 1.8
+  meleeDamage: 8
   fireRate: 10
   bulletSpeed: 100
+  minDistanceToPlayer: 6
+  maxDistanceToPlayer: 14
   poolSize: 20
-  aimThreshold: 5
-  health: 30
+  bulletView: {fileID: 6405578897167248697, guid: 3a140c746d966b24eba607d8a201e771, type: 3}
+  lookAroundDuration: 3
+  lookAroundAngle: 50
+  lookAroundSpeed: 80
+  waypointReachDistance: 0.6
+  patrolSpeed: 30
+  patrolRange: 90
