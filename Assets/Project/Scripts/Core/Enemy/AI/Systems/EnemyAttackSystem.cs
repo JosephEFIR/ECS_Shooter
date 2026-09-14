@@ -40,13 +40,11 @@ namespace Project.Scripts.Core.Enemy.AI.Systems
                 distanceToTarget = Vector3.Distance(agent.transform.position, aimPoint);
                 float attackRange = config.AttackRange;
                 
-                // 1. ПРЕСЛЕДОВАНИЕ
                 if (distanceToTarget > attackRange * 0.8f)
                     agent.SetDestination(target.position);
                 else
                     agent.SetDestination(agent.transform.position);
                 
-                // 2. ПОВОРОТ ТЕЛА (только Y)
                 Vector3 flatDir = target.position - agent.transform.position;
                 flatDir.y = 0f;
                 
@@ -59,13 +57,11 @@ namespace Project.Scripts.Core.Enemy.AI.Systems
                         config.RotationSpeed * Time.deltaTime);
                 }
                 
-                // 3. AIM TARGET — в центр тела цели
                 if (unitComp.AimTarget != null)
                 {
                     unitComp.AimTarget.position = aimPoint;
                 }
                 
-                // 4. СТРЕЛЬБА
                 if (!canSeePlayer) continue;
                 if (distanceToTarget > attackRange) continue;
                 if (Time.time < nextFireTime) continue;
