@@ -8,6 +8,6 @@ namespace Project.Scripts.Core.Health
     {
         public ReactiveProperty<float> CurrentHealth;
         public float MaxHealth;
-        public HealthUIView HealthUIView;
+        public HealthUIView HealthUIView; // Необязательно вообще его иметь, вдруг у нас нету такого
     }
 }

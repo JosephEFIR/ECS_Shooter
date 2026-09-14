@@ -134,21 +134,28 @@ namespace Project.Scripts.Common
         private void EnemySystems()
         {
             _systems
+                //Root
                 .Add(new EnemySpawnSystem())
-                .Add(new EnemyUnitInitSystem())
                 .Add(new TurretInitSystem())
+                .Add(new EnemyUnitInitSystem())
+                //.Add(new EnemyInitHealthSystem())
                 .Add(new EnemyAnimationSystem())
+                
+                //Patrol
                 .Add(new EnemyFoundSystem())        
                 .Add(new AiPatrolSystem())
                 .Add(new TurretPatrolSystem())
-        
+                
+                //Attack
                 .Add(new EnemyInventorySystem())
+                .Add(new EnemyAttackSystem())
                 .Add(new TurretAimSystem())
                 .Add(new TurretShootSystem())
-                .Add(new TurretReactToDamageSystem())
+                .Add(new EnemyReactToDamageSystem())
+                //Death & sound
                 .Add(new DeathSendEventSystem())
-                .Add(new TurretDeathSystem())
-                .Add(new TurretSoundSystem())
+                .Add(new EnemyDeathSystem())
+                .Add(new EnemySoundSystem())
                 ;
         }
         

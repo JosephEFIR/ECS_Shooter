@@ -1,5 +1,6 @@
 ﻿using Leopotam.Ecs;
 using Project.Scripts.Animation;
+using Project.Scripts.Weapon;
 
 namespace Project.Scripts.Core.Enemy.AI.Systems
 {
@@ -11,6 +12,7 @@ namespace Project.Scripts.Core.Enemy.AI.Systems
         {
             foreach (var i in _filter)
             {
+                ref var entity = ref _filter.GetEntity(i);
                 ref var enemyComp = ref _filter.Get1(i);
                 ref var animationComp= ref _filter.Get2(i);
                 

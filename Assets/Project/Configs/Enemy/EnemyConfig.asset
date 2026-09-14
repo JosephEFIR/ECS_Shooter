@@ -13,26 +13,26 @@ MonoBehaviour:
   m_Name: EnemyConfig
   m_EditorClassIdentifier: 
   enemyType: 1
-  moveSpeed: 3.5
+  moveSpeed: 2
   angularSpeed: 120
   acceleration: 8
   health: 50
   viewRadius: 12
   viewAngle: 90
+  verticalAngle: 90
   targetMask:
     serializedVersion: 2
     m_Bits: 128
   obstacleMask:
     serializedVersion: 2
     m_Bits: 512
-  weapon: {fileID: 7500686552293364570, guid: 08de4e52f6e0d0c4c97f1362ded361c6, type: 3}
   rotationSpeed: 180
   aimThreshold: 12
   attackSpeed: 1
   meleeRange: 1.8
   meleeDamage: 8
-  fireRate: 2
-  bulletSpeed: 40
+  fireRate: 7
+  bulletSpeed: 80
   minDistanceToPlayer: 6
   maxDistanceToPlayer: 14
   poolSize: 16
@@ -41,3 +41,8 @@ MonoBehaviour:
   lookAroundAngle: 50
   lookAroundSpeed: 80
   waypointReachDistance: 0.6
+  weapon: {fileID: 7500686552293364570, guid: 08de4e52f6e0d0c4c97f1362ded361c6, type: 3}
+  AttackRange: 15
+  RotationSpeed: 180
+  FireRate: 8
+  BulletSpeed: 100

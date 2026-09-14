@@ -5,10 +5,10 @@ using Project.Scripts.Weapon;
 
 namespace Project.Scripts.Core.Enemy.Turret
 {
-    public class TurretSoundSystem : IEcsRunSystem
+    public class EnemySoundSystem : IEcsRunSystem
     {
         private readonly SoundEffectConfig _soundConfig = null;
-        private readonly EcsFilter<EnemyComponent,TurretComponent, ShootEvent> _filter = null;
+        private readonly EcsFilter<EnemyComponent, ShootEvent> _filter = null;
         
         public void Run()
         {

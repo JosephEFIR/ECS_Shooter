@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Project.Scripts.Core.Enemy.Turret
 {
-    public class TurretDeathSystem : IEcsRunSystem
+    public class EnemyDeathSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<EnemyComponent,TurretComponent, DeathEvent> _filter = null;
+        private readonly EcsFilter<EnemyComponent, DeathEvent> _filter = null;
         
         public void Run()
         {

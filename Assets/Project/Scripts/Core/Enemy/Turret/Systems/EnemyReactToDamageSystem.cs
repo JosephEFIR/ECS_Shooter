@@ -5,9 +5,9 @@ using Project.Scripts.Player;
 
 namespace Project.Scripts.Core.Enemy.Turret
 {
-    public class TurretReactToDamageSystem : IEcsRunSystem
+    public class EnemyReactToDamageSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<EnemyComponent, TurretComponent,TakeDamageEvent> _filter = null;
+        private readonly EcsFilter<EnemyComponent,TakeDamageEvent> _filter = null;
 
         public void Run()
         {
@@ -15,7 +15,7 @@ namespace Project.Scripts.Core.Enemy.Turret
             {
                 ref var entity = ref _filter.GetEntity(i);
                 ref var enemyComp = ref _filter.Get1(i);
-                ref var takeDamageEvent = ref _filter.Get3(i);
+                ref var takeDamageEvent = ref _filter.Get2(i);
 
                 if (takeDamageEvent.Attacker != null && takeDamageEvent.Attacker.TryGetComponent(typeof(PlayerView), out var player))
                 {

@@ -12,10 +12,12 @@ namespace Project.Scripts.Core.Enemy.AI
         [SerializeField] private Animator animator;
         [SerializeField] private AnimIK animik;
         [SerializeField] private WeaponHolder weaponHolder;
+        [SerializeField] private Transform aimTarget;
         
         public NavMeshAgent Agent => agent;
         public Animator Animator => animator;
         public WeaponHolder WeaponHolder => weaponHolder;
         public AnimIK Animik => animik;
+        public Transform AimTarget => aimTarget;
     }
 }

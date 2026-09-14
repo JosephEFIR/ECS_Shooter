@@ -14,5 +14,6 @@
         IsHasWeapon,
         Fire,
         Reload,
+        IsAiming,
     }
 }

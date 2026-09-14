@@ -18,6 +18,7 @@ namespace Project.Scripts.UI.Health
 				ref var healthComponent = ref _filter.Get1(i);
 				var currentHealth = healthComponent.CurrentHealth;
 				var uiView = healthComponent.HealthUIView;
+				if (uiView is null) return;
 				
 				uiView.TinyHealthSystem.SetHealth(healthComponent.MaxHealth);
 				currentHealth.Pairwise().Subscribe(pair =>
