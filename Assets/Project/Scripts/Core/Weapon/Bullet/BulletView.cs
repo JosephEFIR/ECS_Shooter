@@ -15,18 +15,21 @@ namespace Project.Scripts.Weapon.Bullet
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            
+            Collider bulletCollider = GetComponent<Collider>();
+            if (bulletCollider != null) bulletCollider.isTrigger = true;
         }
            
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
             if (!Entity.IsAlive()) return;
-            if (collision.gameObject.CompareTag("Bullet")) return;
+            if (other.gameObject.CompareTag("Bullet")) return;
             
             ref var bulletComp = ref Entity.Get<BulletComponent>();
             if (bulletComp.Owner != null)
             {
-                if (collision.transform == bulletComp.Owner || 
-                    collision.transform.IsChildOf(bulletComp.Owner))
+                if (other.transform == bulletComp.Owner || 
+                    other.transform.IsChildOf(bulletComp.Owner))
                 {
                     return;
                 }

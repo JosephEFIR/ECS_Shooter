@@ -8,16 +8,16 @@ namespace Project.Scripts.Core.Common
         public EcsEntity Entity;
         private Collider _object;
         
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.gameObject.layer != LayerMask.NameToLayer("Room"))
-            {
-                _object = collision.gameObject.GetComponent<Collider>();
-                ref var hitboxComp = ref Entity.Get<HitBoxComponent>();
-                
-                hitboxComp.ColliderEntered = _object;
-                Entity.Get<CollisionEnterEvent>();
-            }
+            if (!Entity.IsAlive()) return;
+            if (other.gameObject.layer == LayerMask.NameToLayer("Room")) return;
+
+            _object = other;
+            ref var hitboxComp = ref Entity.Get<HitBoxComponent>();
+            
+            hitboxComp.ColliderEntered = _object;
+            Entity.Get<CollisionEnterEvent>();
         }
     }
 }
