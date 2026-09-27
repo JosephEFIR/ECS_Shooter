@@ -22,7 +22,7 @@ namespace Project.Scripts.Configs
         [SerializeField] private WeaponView weapon;
 
         [Header("Health")] 
-        [Range(1,200)] [SerializeField] private int health;
+        [Range(1,1000000)] [SerializeField] private int health;
         
         [Header("Other")]
         [Range(0, 10)]
