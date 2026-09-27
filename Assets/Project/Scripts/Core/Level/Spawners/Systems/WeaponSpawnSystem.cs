@@ -21,16 +21,23 @@ namespace Project.Scripts.Core.Level.Spawners.Systems
                 ref var entity = ref _filter.GetEntity(i);
                 ref var spawnComponent = ref _filter.Get2(i);
 
-                SpawnWeapon(entity,spawnComponent.Position, spawnComponent.Rotation, spawnComponent.Parent);
+                SpawnWeapon(entity, spawnComponent.Position, spawnComponent.Rotation, spawnComponent.Parent);
                 
                 entity.Get<InitComponent>();
                 entity.Del<SpawnComponent>();
             }
         }
 
-        private void SpawnWeapon(EcsEntity entity,Transform weaponTransform, Quaternion rotation, Transform parent = null)
+        private void SpawnWeapon(EcsEntity entity, Transform weaponTransform, Quaternion rotation, Transform parent = null)
         {
             WeaponView weaponView = _factory.Create(_spawnConfig.WeaponPrefab, weaponTransform.position, rotation, parent);
+            
+            if (parent != null)
+            {
+                weaponView.transform.localPosition = Vector3.zero;
+                weaponView.transform.localRotation = Quaternion.identity;
+            }
+            
             WeaponComponentInit(entity, weaponView);
         }
 

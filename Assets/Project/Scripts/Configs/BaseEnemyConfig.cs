@@ -39,6 +39,7 @@ namespace Project.Scripts.Configs
         [SerializeField] private float meleeDamage = 8f;
 
         [Header("Ranged")]
+        [SerializeField] private float attackRange = 10f;
         [SerializeField] private float fireRate = 2f;
         [SerializeField] private float bulletSpeed = 40f;
         [SerializeField] private float minDistanceToPlayer = 6f;
@@ -66,6 +67,7 @@ namespace Project.Scripts.Configs
         public float AttackSpeed => attackSpeed;
         public float MeleeRange => meleeRange;
         public float MeleeDamage => meleeDamage;
+        public float AttackRange => attackRange;
         public float FireRate => fireRate;
         public float BulletSpeed => bulletSpeed;
         public float MinDistanceToPlayer => minDistanceToPlayer;

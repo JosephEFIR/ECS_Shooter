@@ -33,7 +33,14 @@ namespace Project.Scripts.Core.Enemy.AI.Systems
                 if (!agent.isOnNavMesh) continue;
                 
                 bool isPlayerTarget = target.GetComponentInParent<PlayerView>() != null;
-                if (!isPlayerTarget) continue;
+                
+                if (!isPlayerTarget)
+                {
+                    agent.updateRotation = true;
+                    continue;
+                }
+                
+                agent.updateRotation = false;
                 
                 Vector3 aimPoint = GetAimPoint(target);
                 
