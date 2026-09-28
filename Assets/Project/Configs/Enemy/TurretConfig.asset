@@ -16,8 +16,8 @@ MonoBehaviour:
   moveSpeed: 3.5
   angularSpeed: 120
   acceleration: 8
-  health: 30
-  viewRadius: 15
+  health: 50
+  viewRadius: 12
   viewAngle: 90
   verticalAngle: 90
   targetMask:
@@ -27,15 +27,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   rotationSpeed: 300
-  aimThreshold: 5
+  aimThreshold: 12
   attackSpeed: 1
   meleeRange: 1.8
   meleeDamage: 8
+  attackRange: 10
   fireRate: 10
-  bulletSpeed: 100
+  bulletSpeed: 40
   minDistanceToPlayer: 6
   maxDistanceToPlayer: 14
-  poolSize: 20
+  poolSize: 16
   bulletView: {fileID: 6405578897167248697, guid: 3a140c746d966b24eba607d8a201e771, type: 3}
   lookAroundDuration: 3
   lookAroundAngle: 50

@@ -10,6 +10,7 @@ TagManager:
   - HealthSprite
   - FX
   - Enemy
+  - Turret
   layers:
   - Default
   - TransparentFX

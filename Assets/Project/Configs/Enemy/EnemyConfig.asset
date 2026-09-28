@@ -32,7 +32,7 @@ MonoBehaviour:
   meleeRange: 1.8
   meleeDamage: 8
   attackRange: 10
-  fireRate: 2
+  fireRate: 10
   bulletSpeed: 40
   minDistanceToPlayer: 6
   maxDistanceToPlayer: 14
