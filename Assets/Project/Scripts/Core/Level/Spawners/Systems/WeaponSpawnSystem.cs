@@ -3,6 +3,7 @@ using Project.Scripts.Configs.Spawn;
 using Project.Scripts.Core.Common;
 using Project.Scripts.Factory;
 using Project.Scripts.Level.Spawners;
+using Project.Scripts.Player;
 using Project.Scripts.Weapon;
 using UnityEngine;
 
@@ -31,13 +32,33 @@ namespace Project.Scripts.Core.Level.Spawners.Systems
         private void SpawnWeapon(EcsEntity entity, Transform weaponTransform, Quaternion rotation, Transform parent = null)
         {
             WeaponView weaponView = _factory.Create(_spawnConfig.WeaponPrefab, weaponTransform.position, rotation, parent);
-            
+
             if (parent != null)
             {
                 weaponView.transform.localPosition = Vector3.zero;
                 weaponView.transform.localRotation = Quaternion.identity;
+
+                PlayerView playerView = parent.GetComponentInParent<PlayerView>();
+                if (playerView != null)
+                {
+                    WeaponIkTargets targets = weaponView.GetComponentInChildren<WeaponIkTargets>();
+                    if (targets != null)
+                    {
+                        playerView.AnimIK.SetIKTargets(
+                            targets.RightHand,
+                            targets.RightElbow,
+                            targets.LeftHand,
+                            targets.LeftElbow);
+                    }
+
+                    WeaponMagazine weaponMagazine = weaponView.GetComponentInChildren<WeaponMagazine>();
+                    if (weaponMagazine != null && playerView.LeftHand != null)
+                    {
+                        weaponMagazine.SetPlayerLeftHand(playerView.LeftHand);
+                    }
+                }
             }
-            
+
             WeaponComponentInit(entity, weaponView);
         }
 
@@ -47,6 +68,7 @@ namespace Project.Scripts.Core.Level.Spawners.Systems
             weaponComponent.Config = weaponView.Config;
             weaponComponent.BulletSpawnPoint = weaponView.BulletSpawnPoint;
             weaponComponent.Audio = weaponView.Audio;
+            weaponComponent.WeaponAnimator = weaponView.WeaponAnimator;
             weaponComponent.LeftHandIKTarget = weaponView.LeftHandIKTarget;
             weaponComponent.RightHandIKTarget = weaponView.RightHandIKTarget;
             weaponComponent.RightHintIKTarget = weaponView.RightHintIKTarget;

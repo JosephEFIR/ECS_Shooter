@@ -33,11 +33,17 @@ namespace Project.Scripts.Weapon
 
         private void Reload(EcsEntity entity)
         {
-            ref var weapon = ref entity.Get<WeaponInventoryComponent>().CurrentWeapon.Get<WeaponComponent>();
+            ref var weaponInventory = ref entity.Get<WeaponInventoryComponent>();
+            if (!weaponInventory.CurrentWeapon.IsAlive()) return;
+            if (!weaponInventory.CurrentWeapon.Has<WeaponComponent>()) return;
+
+            ref var weapon = ref weaponInventory.CurrentWeapon.Get<WeaponComponent>();
             ref var totalAmmo = ref weapon.TotalAmmo;
-            
-            if(totalAmmo.Value == 0) return;
-            
+            ref var magazineSize = ref weapon.MagazineSize;
+
+            if (totalAmmo.Value == 0) return;
+            if (magazineSize.Value >= weapon.Config.MagazineSize) return;
+
             if (Input.GetKey(KeyCode.R) && !entity.Has<WeaponReloadComponent>())
             {
                 entity.Get<WeaponReloadComponent>();

@@ -1,24 +1,20 @@
 ﻿using Leopotam.Ecs;
 using Project.Scripts.Move;
 using Project.Scripts.Tags;
-using Project.Scripts.Weapon;
 using UnityEngine;
 
 namespace Project.Scripts.Animation
 {
-    sealed class PlayerAnimationSystem : IEcsRunSystem //TODO REFACTORE + REF
+    sealed class PlayerAnimationSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerComponent,PlayerMovableComponent, AnimationComponent> _playerAnimationFilter = null;
         
-        //CONFIG?
         private float _velocityX;
         private float _velocityZ;
         private float _currentVelocityY;
         private float _smoothTime = 0.2f; 
         private Vector3 _smoothDampRef; 
         
-        private float _walkAcceleration = 5f;
-        private float _runAcceleration = 10f;
         private float _deceleration = 4f;
         private float _maxWalkValue = 2f;
         private float _maxRunValue = 4f;
@@ -27,8 +23,6 @@ namespace Project.Scripts.Animation
         {
             foreach (var i in _playerAnimationFilter)
             {
-                ref var entity = ref _playerAnimationFilter.GetEntity(i);
-                ref var playerComponent = ref _playerAnimationFilter.Get1(i);
                 ref var movableComponent = ref _playerAnimationFilter.Get2(i);
                 ref var animComponent = ref _playerAnimationFilter.Get3(i);
 
@@ -39,13 +33,6 @@ namespace Project.Scripts.Animation
                 animator.SetFloat(EAnimParameter.Speed.ToString(), movableComponent.Rigidbody.linearVelocity.magnitude);
                 animator.SetBool(EAnimParameter.IsGrounded.ToString(), movableComponent.IsGrounded);
              
-                ref var animIK = ref playerComponent.AnimIK;
-                if (entity.Has<AimComponent>())
-                {
-                    animIK.Rig.weight = 1;
-                }
-                else animIK.Rig.weight = 0;
-                
                 MoveSides(movableComponent);
                 Jump(animComponent.Animator);
                 Landing(animComponent.Animator, movableComponent);

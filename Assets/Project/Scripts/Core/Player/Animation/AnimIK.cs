@@ -5,20 +5,27 @@ namespace Project.Scripts.Animation
 {
     public class AnimIK : MonoBehaviour
     {
-        [SerializeField] private Rig rig; 
         [SerializeField] private RigBuilder rigBuilder;
         [SerializeField] private TwoBoneIKConstraint leftHandConstraint;
         [SerializeField] private TwoBoneIKConstraint rightHandConstraint;
-        
-        public Rig Rig => rig;
 
-        public void SetIKTargets(Transform leftHand, Transform rightHand, Transform leftHint, Transform rightHint)
+        private bool _targetsInitialized;
+
+        public TwoBoneIKConstraint LeftHandConstraint => leftHandConstraint;
+        public TwoBoneIKConstraint RightHandConstraint => rightHandConstraint;
+
+        public void SetIKTargets(Transform rightHand, Transform rightElbow, Transform leftHand, Transform leftElbow)
         {
-            leftHandConstraint.data.target = leftHand;
             rightHandConstraint.data.target = rightHand;
-            rightHandConstraint.data.hint = rightHint;
-            leftHandConstraint.data.hint = leftHint;
-            rigBuilder.Build();
+            rightHandConstraint.data.hint = rightElbow;
+            leftHandConstraint.data.target = leftHand;
+            leftHandConstraint.data.hint = leftElbow;
+
+            if (!_targetsInitialized)
+            {
+                _targetsInitialized = true;
+                rigBuilder.Build();
+            }
         }
     }
 }

@@ -15,5 +15,7 @@ MonoBehaviour:
   totalAmmo: 90
   fireRate: 60
   magazineSize: 30
-  reloadTime: 2
+  reloadTime: 3
+  weaponReloadClipLength: 3
+  playerReloadClipLength: 3
   bulletView: {fileID: 6405578897167248697, guid: 3a140c746d966b24eba607d8a201e771, type: 3}
