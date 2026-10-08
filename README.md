@@ -28,6 +28,10 @@
 
 ![Gameplay](Docs/Media/gameplay_screenshot.jpg)
 
+## Меню
+
+![Menu](Docs/Media/menu_example.gif)
+
 ## Стек
 
 - **Unity 6** (HDRP)
