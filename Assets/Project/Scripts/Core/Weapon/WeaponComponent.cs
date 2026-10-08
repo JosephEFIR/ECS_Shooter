@@ -13,6 +13,7 @@ namespace Project.Scripts.Weapon
         public Transform BulletSpawnPoint;
         public AudioSource Audio;
         public BulletPool BulletPool;
+        public Animator WeaponAnimator;
         
         public bool CanFire;
         public float FireRate;                     

@@ -1,7 +1,6 @@
 ﻿using Leopotam.Ecs;
 using Project.Scripts.Core.Player;
 using Project.Scripts.Weapon;
-using UnityEngine;
 
 namespace Project.Scripts.Animation
 {
@@ -13,6 +12,7 @@ namespace Project.Scripts.Animation
         {
             foreach (var i in _filter)
             {
+                ref var entity = ref _filter.GetEntity(i);
                 ref var animComponent = ref _filter.Get1(i);
                 ref var weaponInventory = ref _filter.Get2(i);
 
@@ -21,7 +21,7 @@ namespace Project.Scripts.Animation
                 if(!currentWeapon.Has<WeaponComponent>()) return;
                 
                 animComponent.Animator.SetBool(EAnimParameter.IsHasWeapon.ToString(), currentWeapon.Has<WeaponComponent>());
-                animComponent.Animator.SetBool(EAnimParameter.Reload.ToString(), currentWeapon.Has<WeaponReloadComponent>());
+                animComponent.Animator.SetBool(EAnimParameter.Reload.ToString(), entity.Has<WeaponReloadComponent>());
             }    
         }
     }

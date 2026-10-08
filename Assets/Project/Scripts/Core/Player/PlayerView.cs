@@ -1,7 +1,6 @@
 ﻿using Project.Scripts.Animation;
 using Project.Scripts.Configs;
 using Project.Scripts.Core.Common;
-using Project.Scripts.Core.Player;
 using Project.Scripts.Player.Triggers;
 using Project.Scripts.Weapon;
 using Unity.Cinemachine;
@@ -33,6 +32,8 @@ namespace Project.Scripts.Player
         [Header("Weapon")] 
         [SerializeField] private WeaponHolder weaponHolder;
         [SerializeField] private Transform aimTarget;
+        [SerializeField] private Transform leftHand;
+        [SerializeField] private Transform rightHand;
         
         
         public PlayerConfig Config => config;
@@ -48,5 +49,7 @@ namespace Project.Scripts.Player
         public WeaponHolder WeaponHolder => weaponHolder;
         public Transform AimTarget => aimTarget;
         public AnimIK AnimIK => animIK;
+        public Transform LeftHand => leftHand;
+        public Transform RightHand => rightHand;
     }
 }

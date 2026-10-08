@@ -11,14 +11,27 @@ namespace Project.Scripts.Animation
         [SerializeField] private TwoBoneIKConstraint rightHandConstraint;
         
         public Rig Rig => rig;
+        public TwoBoneIKConstraint LeftHandConstraint => leftHandConstraint;
+        public TwoBoneIKConstraint RightHandConstraint => rightHandConstraint;
 
-        public void SetIKTargets(Transform leftHand, Transform rightHand, Transform leftHint, Transform rightHint)
+        public void SetIKTargets(Transform rightHand, Transform rightElbow, Transform leftHand, Transform leftElbow)
         {
-            leftHandConstraint.data.target = leftHand;
             rightHandConstraint.data.target = rightHand;
-            rightHandConstraint.data.hint = rightHint;
-            leftHandConstraint.data.hint = leftHint;
+            rightHandConstraint.data.hint = rightElbow;
+            leftHandConstraint.data.target = leftHand;
+            leftHandConstraint.data.hint = leftElbow;
             rigBuilder.Build();
+        }
+
+        public void SetActive(bool active)
+        {
+            if (rig != null) rig.weight = active ? 1f : 0f;
+        }
+
+        public void SetLeftHandActive(bool active)
+        {
+            if (leftHandConstraint != null)
+                leftHandConstraint.weight = active ? 1f : 0f;
         }
     }
 }
