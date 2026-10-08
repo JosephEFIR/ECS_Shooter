@@ -127,7 +127,7 @@ namespace Project.Scripts.Common
                 .Add(new WeaponReloadSystem())
                 .Add(new WeaponReloadAnimSystem())
                 .Add(new PlayerWeaponAnimSystem())
-                .Add(new SetIkAnimSystem())
+                //.Add(new SetIkAnimSystem())
                 .Add(new WeaponSoundSystem())
                 ;
         }
